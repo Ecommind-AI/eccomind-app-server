@@ -6,6 +6,7 @@ interface ChatbotInputProps {
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
   handleSendMessage: () => void;
   isLoading: boolean;
+  sendButtonColor: string;
 }
 
 const ChatbotInput: React.FC<ChatbotInputProps> = ({
@@ -13,6 +14,7 @@ const ChatbotInput: React.FC<ChatbotInputProps> = ({
   setUserInput,
   handleSendMessage,
   isLoading,
+  sendButtonColor,
 }) => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
@@ -55,6 +57,7 @@ const ChatbotInput: React.FC<ChatbotInputProps> = ({
         dir={isHebrewText(userInput) ? "rtl" : "ltr"} // ✅ Dynamically set direction
       />
       <button
+        style={{ backgroundColor: sendButtonColor }}
         className={`chatbot-send-button ${
           userInput.length < 1 ? "disabled" : ""
         }`}

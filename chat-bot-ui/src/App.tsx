@@ -36,12 +36,14 @@ const App = () => {
       <div>
         <ChatbotButton
           buttonRef={buttonRef}
+          color={shopData.primary_color}
           onClick={() => {
             setModalVisible(!modalVisible);
           }}
         />
         {modalVisible && (
           <ChatbotModal
+            primaryColor={shopData.primary_color || "#FFFFFF"}
             initialMessages={initialMessages}
             modalRef={modalRef}
             onClose={() => {

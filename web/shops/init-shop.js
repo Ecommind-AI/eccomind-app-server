@@ -21,7 +21,8 @@ export async function initShop(shop, accessToken) {
                 ...shopData,
                 domain: shop,
                 initial_message: "How can we help you today? 👋",
-                initial_suggestions: ["What are your best-selling products right now?"]
+                initial_suggestions: ["What are your best-selling products right now?"],
+                primary_color: "#2563EB"
             },
             { upsert: true, new: true }
         );
