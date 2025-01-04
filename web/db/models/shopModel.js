@@ -12,9 +12,10 @@ const shopSchema = new mongoose.Schema({
   shop_owner: { type: String },
   plan_name: { type: String },
   phone: { type: String },
-  initial_suggestions: {type: Array},
-  initial_message: {type: String},
-  primary_color: {type: String}
+  initial_suggestions: { type: Array },
+  initial_message: { type: String },
+  primary_color: { type: String },
+  test_mode: { type: Boolean }
 });
 
 const Shop = mongoose.model("Shop", shopSchema);
