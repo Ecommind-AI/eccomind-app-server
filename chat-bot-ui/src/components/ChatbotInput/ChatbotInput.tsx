@@ -16,6 +16,9 @@ const ChatbotInput: React.FC<ChatbotInputProps> = ({
 }) => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
+  // Detect if the text contains Hebrew characters
+  const isHebrewText = (text: string) => /[\u0590-\u05FF]/.test(text);
+
   useEffect(() => {
     const handleResize = () => {
       const isKeyboard =
@@ -45,10 +48,11 @@ const ChatbotInput: React.FC<ChatbotInputProps> = ({
         className="chatbot-input"
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}
-        onKeyDown={handleKeyDown} // Added onKeyDown handler
+        onKeyDown={handleKeyDown}
         inputMode="text"
         pattern=".*"
         placeholder="Write a message..."
+        dir={isHebrewText(userInput) ? "rtl" : "ltr"} // ✅ Dynamically set direction
       />
       <button
         className={`chatbot-send-button ${

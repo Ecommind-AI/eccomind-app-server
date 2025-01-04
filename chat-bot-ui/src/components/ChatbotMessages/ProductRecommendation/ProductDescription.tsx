@@ -8,6 +8,9 @@ export const ProductDescription = ({
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
+  // Function to detect if the text contains Hebrew characters
+  const isHebrewText = (text: string) => /[\u0590-\u05FF]/.test(text);
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
@@ -19,8 +22,7 @@ export const ProductDescription = ({
       <>
         {showFullDescription ? description : description.slice(0, charLimit)}
         <span onClick={toggleDescription} className="more-less-button">
-          {" "}
-          {showFullDescription ? "less" : "more..."}
+          {showFullDescription ? " less" : " more..."}
         </span>
       </>
     ) : (
@@ -29,7 +31,10 @@ export const ProductDescription = ({
   };
 
   return (
-    <div className="product-description">
+    <div
+      className="product-description"
+      dir={isHebrewText(description) ? "rtl" : "ltr"} // ✅ Dynamically set text direction
+    >
       {getShortenedDescription(description)}
     </div>
   );

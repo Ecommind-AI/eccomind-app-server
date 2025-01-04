@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { ShopData } from "../types";
 import { EcommindServerAPI } from "../api/eccommind-api";
-import { SHOP_DOMAIN } from "../constants";
 
 export const useShopData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [shopData, setShopData] = useState<ShopData | null>(null);
+  const shopDomain = window.shopDomain; // || "shoesstore123235.myshopify.com";
 
   useEffect(() => {
     const fetchShopData = async () => {
       try {
-        const shopData = await EcommindServerAPI.getShopData(SHOP_DOMAIN);
+        const shopData = await EcommindServerAPI.getShopData(shopDomain);
         setShopData(shopData);
       } catch (error) {
         console.error("Failed to fetch shop data:", error);
@@ -19,8 +19,11 @@ export const useShopData = () => {
       }
     };
 
-    fetchShopData();
-  }, []);
+    if (shopDomain) {
+      console.log("window.shopDomain: " + shopDomain);
+      fetchShopData();
+    }
+  }, [shopDomain]);
 
   return { shopData, isLoading };
 };
