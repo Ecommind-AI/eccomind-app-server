@@ -4,20 +4,24 @@ import ChatbotMessages from "../ChatbotMessages/ChatbotMessages";
 import ChatbotInput from "../ChatbotInput/ChatbotInput";
 import "./ChatbotModal.css";
 import axios from "axios";
+import { Message } from "../../types";
 import {
   addMessageToSessionConversation,
   getSessionConversation,
   initConversationId,
-} from "../../utils";
-import { Message } from "../../types";
-import { initialMessages } from "../../constants";
+} from "../../services/conversations-service";
 
 interface ChatbotModalProps {
   onClose: () => void;
   modalRef: React.RefObject<HTMLDivElement>;
+  initialMessages: Message[];
 }
 
-const ChatbotModal: React.FC<ChatbotModalProps> = ({ onClose, modalRef }) => {
+const ChatbotModal: React.FC<ChatbotModalProps> = ({
+  onClose,
+  modalRef,
+  initialMessages,
+}) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -132,6 +136,7 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({ onClose, modalRef }) => {
         type: "assistant",
         text: "Sorry, I could not fetch an answer. Please try again later.",
       };
+      setIsLoading(false);
       setMessages([...messages, newUserMessage, assistantErrorMessage]);
       addMessageToSessionConversation(assistantErrorMessage);
     }
@@ -140,6 +145,7 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({ onClose, modalRef }) => {
   return (
     <div ref={modalRef} className={`chatbot-modal ${isVisible ? "show" : ""}`}>
       <ChatbotHeader
+        initialMessages={initialMessages}
         setConversationId={setConversationId}
         onClose={onClose}
         setMessages={setMessages}

@@ -11,6 +11,8 @@ import { registerWebhooksForAllShops } from "./webhooks/register-webhooks.js";
 import { customerWebhooksHandlers } from "./webhooks/webhook-handlers.js/customer-webhooks-handlers.js";
 import { productsWebhooksHandlers } from "./webhooks/webhook-handlers.js/products-webhooks-handlers.js";
 import { onInstall } from "./middlewares/on-install-middlware.js";
+import { chatRouter } from "./routes/chat-router.js";
+import { merchantRouter } from "./routes/merchat-router.js";
 
 dotenv.config();
 
@@ -43,21 +45,11 @@ app.post(
 // If you are adding routes outside of the /api path, remember to
 // also add a proxy rule for them in web/frontend/vite.config.js
 
-app.use("/api/*", shopify.validateAuthenticatedSession());
+app.use("/api/auth/*", shopify.validateAuthenticatedSession());
+app.use("/api/merchant", shopify.validateAuthenticatedSession(), merchantRouter());
+app.use("/api/chat", chatRouter())
 
 app.use(express.json());
-
-app.get("/api/products/all-rest", async (_req, res) => {
-  const { accessToken, shop } = res.locals.shopify.session;
-
-  try {
-    const products = await fetchAllProducts(shop, accessToken);
-    res.status(200).send({ products });
-  } catch (error) {
-    console.error("Error fetching products:", error.message);
-    res.status(500).send({ error: error.message });
-  }
-});
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));
