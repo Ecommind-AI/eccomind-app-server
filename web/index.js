@@ -13,7 +13,7 @@ import { productsWebhooksHandlers } from "./webhooks/webhook-handlers.js/product
 import { onInstall } from "./middlewares/on-install-middlware.js";
 import { chatRouter } from "./routes/chat-router.js";
 import { merchantRouter } from "./routes/merchat-router.js";
-import cors from "cors"; // ✅ Import cors
+import cors from "cors";
 
 dotenv.config();
 
