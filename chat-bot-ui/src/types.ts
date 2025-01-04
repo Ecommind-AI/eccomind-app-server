@@ -13,3 +13,9 @@ export interface Message {
   isButton?: boolean;
   products_recommendations?: ProductRecommendation[]; // Array of product recommendations
 }
+
+export interface ShopData {
+  initial_message: string;
+  initial_suggestions: string[];
+  primary_color: string;
+}

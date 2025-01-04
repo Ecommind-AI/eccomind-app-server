@@ -2,23 +2,24 @@ import React from "react";
 import ChatIcon from "../../assets/chat-default-icon.svg";
 import "./ChatbotHeader.css";
 import { Message } from "../../types";
-import { initialMessages } from "../../constants";
 import {
   deleteSessionConversationId,
   initConversationId,
   resetConversationSessionHistory,
-} from "../../utils";
+} from "../../services/conversations-service";
 
 interface ChatbotHeaderProps {
   onClose: () => void;
   setMessages: (messages: Message[]) => void;
   setConversationId: (convdId: number) => void;
+  initialMessages: Message[];
 }
 
 const ChatbotHeader: React.FC<ChatbotHeaderProps> = ({
   onClose,
   setMessages,
   setConversationId,
+  initialMessages,
 }) => {
   const handleNewChat = () => {
     setMessages(initialMessages);
