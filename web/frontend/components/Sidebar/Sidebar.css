@@ -30,7 +30,7 @@
 }
 
 .logo-text {
-  font-size: 1.3em;
+  font-size: 1vw;
   font-weight: 700;
   color: #1e1e2d;
   margin: 0;
@@ -71,7 +71,7 @@
 }
 
 .menu-item .icon {
-  font-size: 1.2em;
+  font-size: 1.2vw;
   padding: 0;
   margin-bottom: -5px;
 }
