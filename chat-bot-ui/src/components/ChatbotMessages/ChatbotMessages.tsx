@@ -23,26 +23,25 @@ const ChatbotMessages: React.FC<ChatbotMessagesProps> = ({
         top: messagesContainer.scrollHeight + 1000,
         behavior: "smooth",
       });
-      console.log(
-        "Scrolling to bottom of messages container:",
-        messagesContainer.scrollHeight
-      );
     }
   }, [messages]);
 
-// Function to format text with **bold** support and <br> for newlines
-const formatText = (text: string) => {
-  const parts = text.split(/(\*\*.*?\*\*)|(\n)/); // Split by **bold text** and \n
-  return parts.map((part, index) => {
-    if (part === '\n') {
-      return <br key={index} />;
-    } else if (part?.startsWith("**") && part.endsWith("**")) {
-      return <strong key={index}>{part.slice(2, -2)}</strong>;
-    } else {
-      return <span key={index}>{part}</span>;
-    }
-  });
-};
+  // Function to detect if the text contains Hebrew characters
+  const isHebrewText = (text: string) => /[\u0590-\u05FF]/.test(text);
+
+  // Function to format text with **bold** support and <br> for newlines
+  const formatText = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)|(\n)/); // Split by **bold text** and \n
+    return parts.map((part, index) => {
+      if (part === "\n") {
+        return <br key={index} />;
+      } else if (part?.startsWith("**") && part.endsWith("**")) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      } else {
+        return <span key={index}>{part}</span>;
+      }
+    });
+  };
 
   return (
     <div className="chatbot-messages" id="messages-container">
@@ -54,6 +53,7 @@ const formatText = (text: string) => {
               className={`chatbot-message ${msg.type} ${
                 msg.isButton ? "suggestion" : ""
               }`}
+              dir={isHebrewText(msg.text) ? "rtl" : "ltr"} // ✅ Dynamically set text direction
             >
               {msg.isButton ? (
                 <p

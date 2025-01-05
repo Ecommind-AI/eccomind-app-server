@@ -13,6 +13,7 @@ import { productsWebhooksHandlers } from "./webhooks/webhook-handlers.js/product
 import { onInstall } from "./middlewares/on-install-middlware.js";
 import { chatRouter } from "./routes/chat-router.js";
 import { merchantRouter } from "./routes/merchat-router.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -27,6 +28,9 @@ const STATIC_PATH =
     : `${process.cwd()}/frontend/`;
 
 const app = express();
+
+app.use(cors());
+
 
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());

@@ -19,7 +19,7 @@ export const defaultInitialMessages: Message[] = [
   // },
 ];
 export const ECOMMIND_SERVER_URL =
-  "https://heating-lawrence-facilitate-h.trycloudflare.com";
+  "https://sales-mate-app.onrender.com";
 
 export const SHOP_DOMAIN =
   window.shopDomain || "shoesstore123235.myshopify.com";

@@ -1,5 +1,4 @@
 import React from "react";
-import ChatIcon from "../../assets/chat-default-icon.svg";
 import "./ChatbotHeader.css";
 import { Message } from "../../types";
 import {
@@ -7,12 +6,14 @@ import {
   initConversationId,
   resetConversationSessionHistory,
 } from "../../services/conversations-service";
+import ChatLogo from "../../assets/button-logo.svg";
 
 interface ChatbotHeaderProps {
   onClose: () => void;
   setMessages: (messages: Message[]) => void;
   setConversationId: (convdId: number) => void;
   initialMessages: Message[];
+  logoColor: string;
 }
 
 const ChatbotHeader: React.FC<ChatbotHeaderProps> = ({
@@ -20,6 +21,7 @@ const ChatbotHeader: React.FC<ChatbotHeaderProps> = ({
   setMessages,
   setConversationId,
   initialMessages,
+  logoColor,
 }) => {
   const handleNewChat = () => {
     setMessages(initialMessages);
@@ -45,12 +47,14 @@ const ChatbotHeader: React.FC<ChatbotHeaderProps> = ({
       </div>
 
       {/* Circular Logo */}
-      <div className="chatbot-logo-container">
+      <div
+        className="chatbot-logo-container"
+        style={{ backgroundColor: logoColor }}
+      >
         <img
-          src={ChatIcon}
+          src={ChatLogo}
           alt="Chatbot Logo"
-          className="chatbot-logo"
-          width={30}
+          className="chatbot-header-icon"
         />
       </div>
     </div>
