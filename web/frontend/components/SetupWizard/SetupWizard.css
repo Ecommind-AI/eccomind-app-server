@@ -1,12 +1,233 @@
 .setup-wizard {
-    background-color: #fff;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 100vh;
   }
   
   .title {
-    font-size: 1.8em;
-    margin-bottom: 20px;
+    color:#020617;
+    font-family: Poppins;
+    font-size: 1.1vw;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 5px;
   }
   
+.setup-wizard__container{
+  display: flex;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+  width: 100%;
+  height: 91vh;
+  box-sizing: border-box;
+  min-height: 91vh;
+
+}
+
+
+.setup-wizard__container-column{
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.block-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+  background-color: #fff;
+  max-height: 100vh;
+  min-height: 22vh;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  gap: 24px;
+}
+
+.block-container__title{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+.block-container__title-img{
+  width: 38px;
+  height: 38px;
+}
+.block-container__title-text{
+  margin-left: 12px;
+  color:  #475569;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.block-container__settings{
+  width: 100%;
+  height: 100%;
+}
+
+.block-container__settings-header{
+  color: #475569;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.block-container__settings-field{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #E2E8F0;
+  border-radius: 7px;
+  height: 6vh;
+  color:#020617;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  box-sizing: border-box;
+}
+
+.block-container__settings-field::placeholder{
+  color:#020617;
+}
+
+.block-container__settings-field--tall{
+  height: 90%;
+  max-height: 20vh;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.block-container__settings-field--color_select{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #E2E8F0;
+  border-radius: 7px;
+  height: 6vh;
+}
+
+.block-container__settings-field--color_select>
+div{
+  display: flex;
+  align-items: center;
+}
+
+.block-container__settings-field-color_circle_select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 2.5vh;
+  height: 2.5vh;
+  border: 2px solid #ccc;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+
+.block-container__settings-field-color_selected_name{
+  color:  #020617;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.block-container__settings-field-color_selected_img{
+  margin-left: 20%;
+}
+
+.block-container__settings--twice_center{
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+
+}
+
+.block-container__settings--twice_center>
+.block-container__settings-sub_container{
+  width: 50%;
+}
+
+.block-container__settings-sub_container{
+  width: 100%;
+}
+
+.block-container__settings-sub_container--twice_beetwen{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #E2E8F0;
+  border-radius: 7px;
+}
+.block-container__settings-sub_container-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+}
+.block-container__settings-sub_container-main-icon{
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
+}
+.block-container__settings-sub_container-main-text{
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.block-container__settings-sub_container-second-button{
+  background-color: #e2e8f000;
+  color: #2563EB;
+  border: none;
+  border-left: 1px solid #E2E8F0;
+}
+
+
+.setup-wizard__submit-container{
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  width: 100%;
+  height: 5vh;
+}
+.setup-wizard__submit-button{
+  border: none;
+  display: flex;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 32px;
+  background:#2563EB;
+  cursor: pointer;
+}
