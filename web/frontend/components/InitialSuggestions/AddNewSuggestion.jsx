@@ -8,7 +8,7 @@ const AddNewSuggestion = ({ setIsModalwindow, suggestionsList, setChange }) => {
         list: suggestionsList
     });
 
-    const handleChange = (value) => {
+    const handleChange = (name,value) => {
         setState({ ...state, newItemValue: value });
     };
 

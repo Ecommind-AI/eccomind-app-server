@@ -5,9 +5,9 @@ import LinkedInput from "../LinkedInput/LinkedInput";
 const EditQuestionAndAnswer = ({ setIsModalwindow, itemIndex, questionsAndAnswersList, setChange }) => {
     const [state, setState] = useState(questionsAndAnswersList);
 
-    const handleChange = (value) => {
+    const handleChange = (name, value) => {
         const updatedList = [...state];
-        updatedList[itemIndex] = { ...updatedList[itemIndex], ...value };
+        updatedList[itemIndex] = { ...updatedList[itemIndex], [name]: value };
         setState(updatedList);
     };
 
@@ -38,7 +38,7 @@ const EditQuestionAndAnswer = ({ setIsModalwindow, itemIndex, questionsAndAnswer
                     </h3>
                     <LinkedInput
                         linkedValue={state[itemIndex].question} 
-                        onValueChange={(value) => handleChange({ question: value })} 
+                        onValueChange={handleChange} 
                         inputType="text"
                         name="question"
                         className="window__main-field"
@@ -52,7 +52,7 @@ const EditQuestionAndAnswer = ({ setIsModalwindow, itemIndex, questionsAndAnswer
                     </h3>
                     <LinkedInput
                         linkedValue={state[itemIndex].answer}
-                        onValueChange={(value) => handleChange({ answer: value })} 
+                        onValueChange={handleChange} 
                         inputType="textarea"
                         name="answer"
                         className="window__main-field window__main-field--tall"

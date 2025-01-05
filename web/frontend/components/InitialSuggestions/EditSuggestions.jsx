@@ -5,7 +5,7 @@ import LinkedInput from "../LinkedInput/LinkedInput";
 const EditSuggestions = ({ setIsModalwindow, itemIndex, suggestionsList, setChange }) => {
     const [state, setState] = useState(suggestionsList);
 
-    const handleChange = (value) => {
+    const handleChange = (name, value) => {
         const updatedSuggestions = [...state];
         updatedSuggestions[itemIndex] = value;
         setState(updatedSuggestions);

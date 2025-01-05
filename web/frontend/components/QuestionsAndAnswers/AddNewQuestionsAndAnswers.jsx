@@ -50,7 +50,7 @@ const AddNewQuestionsAndAnswers = ({setIsModalwindow, questionsAndAnswersList, s
                     </h3>
                     <LinkedInput
                         linkedValue={state.newItemValue.question}
-                        onValueChange={(value) => handleChange('question', value)}
+                        onValueChange={handleChange}
                         inputType="text"
                         name="question"
                         className="window__main-field"
@@ -64,7 +64,7 @@ const AddNewQuestionsAndAnswers = ({setIsModalwindow, questionsAndAnswersList, s
                     </h3>
                     <LinkedInput
                         linkedValue={state.newItemValue.answer}
-                        onValueChange={(value) => handleChange('answer', value)}
+                        onValueChange={handleChange}
                         inputType="textarea"
                         name="answer"
                         className="window__main-field window__main-field--tall"

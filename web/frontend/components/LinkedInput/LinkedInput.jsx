@@ -16,7 +16,7 @@ const LinkedInput = ({ linkedValue, onValueChange, name, inputType = INPUTS_TYPE
         const newValue = e.target.value;
         setValue(newValue);
         if (onValueChange) {
-            onValueChange(newValue);
+            onValueChange(name, newValue);
         }
     };
 
