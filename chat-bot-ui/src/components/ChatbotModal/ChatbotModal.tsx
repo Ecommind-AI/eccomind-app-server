@@ -33,32 +33,39 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
   const timelyDisplayAssistantMessages = async ({
     userMessage,
     assistantMessages,
+    suggestions,
     index = 0,
   }: {
     userMessage: Message;
     assistantMessages: Message[];
+    suggestions: Message[];
     index?: number;
   }) => {
+    const messagesToDisplay = [...assistantMessages, ...suggestions];
     if (index === 0) {
       setIsLoading(true);
     }
-    console.log({ userMessage, assistantMessages, index });
+    console.log({ userMessage, messagesToDisplay, index });
     setMessages([
       ...messages.filter((m) => !m.isButton),
       userMessage,
-      ...assistantMessages.slice(0, index + 1),
+      ...messagesToDisplay.slice(0, index + 1),
     ]);
 
     const nextMessageIndex = index + 1;
-    if (assistantMessages[nextMessageIndex]) {
+    if (messagesToDisplay[nextMessageIndex]) {
+      if (messagesToDisplay[nextMessageIndex].isButton) {
+        setIsLoading(false);
+      }
       setTimeout(
         () =>
           timelyDisplayAssistantMessages({
             userMessage,
             assistantMessages,
+            suggestions,
             index: nextMessageIndex,
           }),
-        1000
+        messagesToDisplay[nextMessageIndex].isButton ? 250 : 1000
       );
     } else {
       setIsLoading(false);
@@ -91,18 +98,26 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
       };
 
       const response = await axios.post(
-        "https://eccomerce-virtual-assistant.onrender.com/chat",
+        "https://eccomerce-virtual-assistant-staging.onrender.com/chat",
         payload
       );
 
       const { model_reply } = response.data;
 
       // Parse the model_reply content
-      const content = JSON.parse(model_reply).content;
+      const parsedModelReply = JSON.parse(model_reply);
+      const messages = parsedModelReply.content.messages;
+      const suggestions: string[] =
+        parsedModelReply.content.suggestions?.items || [];
+      const suggestionMessages: Message[] = suggestions.map((sText) => ({
+        type: "user",
+        isButton: true,
+        text: sText,
+      }));
 
       const newAssistantMessages: Message[] = [];
 
-      content.forEach((item: any) => {
+      messages.forEach((item: any) => {
         if (item.text) {
           // Add text message as a regular assistant message
           newAssistantMessages.push({ type: "assistant", text: item.text });
@@ -128,6 +143,7 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
       timelyDisplayAssistantMessages({
         userMessage: newUserMessage,
         assistantMessages: newAssistantMessages,
+        suggestions: suggestionMessages,
       });
       newAssistantMessages.forEach((msg) =>
         addMessageToSessionConversation(msg)
