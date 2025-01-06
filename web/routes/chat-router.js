@@ -15,7 +15,7 @@ export const chatRouter = () => {
         try {
             const shopData = await Shop.findOne(
                 { domain: shopDomain },
-                { initial_message: 1, initial_suggestions: 1, primary_color: 1, _id: 0 }
+                { initial_message: 1, initial_suggestions: 1, primary_color: 1, _id: 0, test_mode: 1 }
             ).lean()
 
             if (shopData) {

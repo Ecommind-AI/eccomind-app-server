@@ -15,12 +15,14 @@ interface ChatbotModalProps {
   onClose: () => void;
   modalRef: React.RefObject<HTMLDivElement>;
   initialMessages: Message[];
+  primaryColor: string;
 }
 
 const ChatbotModal: React.FC<ChatbotModalProps> = ({
   onClose,
   modalRef,
   initialMessages,
+  primaryColor,
 }) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [userInput, setUserInput] = useState("");
@@ -145,6 +147,7 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
   return (
     <div ref={modalRef} className={`chatbot-modal ${isVisible ? "show" : ""}`}>
       <ChatbotHeader
+        logoColor={primaryColor}
         initialMessages={initialMessages}
         setConversationId={setConversationId}
         onClose={onClose}
@@ -157,6 +160,7 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
         handleSendMessage={handleSendMessage}
       />
       <ChatbotInput
+        sendButtonColor={primaryColor}
         userInput={userInput}
         setUserInput={setUserInput}
         handleSendMessage={() => handleSendMessage(userInput)}

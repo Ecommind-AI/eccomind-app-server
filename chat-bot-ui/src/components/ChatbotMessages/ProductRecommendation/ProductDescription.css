@@ -1,8 +1,9 @@
 .product-description {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .more-less-button {
-    color: grey;
-    cursor: pointer;
+  color: grey;
+  cursor: pointer;
+  text-decoration: underline;
 }

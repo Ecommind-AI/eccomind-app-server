@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { ShopData } from "../types";
 import { EcommindServerAPI } from "../api/eccommind-api";
 
-export const useShopData = (shopDomain: string) => {
+export const useShopData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [shopData, setShopData] = useState<ShopData | null>(null);
+  const shopDomain = window.shopDomain; // || "shoesstore123235.myshopify.com";
 
   useEffect(() => {
     const fetchShopData = async () => {
@@ -18,7 +19,10 @@ export const useShopData = (shopDomain: string) => {
       }
     };
 
-    fetchShopData();
+    if (shopDomain) {
+      console.log("window.shopDomain: " + shopDomain);
+      fetchShopData();
+    }
   }, [shopDomain]);
 
   return { shopData, isLoading };

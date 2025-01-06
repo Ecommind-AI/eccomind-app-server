@@ -17,7 +17,13 @@ export async function initShop(shop, accessToken) {
         // Save shop data to MongoDB
         const savedShop = await Shop.findOneAndUpdate(
             { id: shopData.id },
-            {...shopData, domain: shop},
+            {
+                ...shopData,
+                domain: shop,
+                initial_message: "How can we help you today? 👋",
+                initial_suggestions: ["What are your best-selling products right now?"],
+                primary_color: "#2563EB"
+            },
             { upsert: true, new: true }
         );
 
@@ -27,13 +33,13 @@ export async function initShop(shop, accessToken) {
         const bulkOps = products.map((product) => ({
             updateOne: {
                 filter: { id: product.id },
-                update: { ...product, shop_id: savedShop.id, shop_domain: savedShop.domain, created_at: new Date()  }, 
+                update: { ...product, shop_id: savedShop.id, shop_domain: savedShop.domain, created_at: new Date() },
                 upsert: true, // Insert if it doesn't exist
             },
         }));
         const result = await Products.bulkWrite(bulkOps);
         console.log(`Bulk operation successful: ${result.nModified} documents updated.`);
-      
+
 
         console.log(`Saved ${products.length} products for shop: ${savedShop.name}`);
         return { shopData, products };
