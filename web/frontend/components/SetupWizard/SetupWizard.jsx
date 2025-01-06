@@ -9,7 +9,7 @@ import AIChatBotPreview from "../AIChatBotPreview/AIChatBotPreview.jsx";
 
 const SetupWizard = () => {
   const [setupData, setSetupData] = useState({
-    initial_message: "hello!",
+    initial_message: "hello! friend",
     initial_suggestions: ["suggestions1", "suggestions2", "suggestions3"],
     delivery_description: "description",
     shop_description: "shop description",
