@@ -98,7 +98,7 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
       };
 
       const response = await axios.post(
-        "https://eccomerce-virtual-assistant-staging.onrender.com/chat",
+        "https://eccomerce-virtual-assistant.onrender.com/chat",
         payload
       );
 
