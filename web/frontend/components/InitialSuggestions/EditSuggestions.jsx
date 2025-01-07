@@ -12,7 +12,8 @@ const EditSuggestions = ({ setIsModalwindow, itemIndex, suggestionsList, setChan
     };
 
     const handleSaveChange = () => {
-        setChange("suggestions",state); 
+        setChange("initial_suggestions",state); 
+        setIsModalwindow(false);
     };
 
     return (
@@ -39,7 +40,7 @@ const EditSuggestions = ({ setIsModalwindow, itemIndex, suggestionsList, setChan
                         linkedValue={state[itemIndex]}
                         onValueChange={handleChange}
                         inputType="textarea"
-                        name="suggestion"
+                        name="initial_suggestions"
                         className="window__main-field window__main-field--tall"
                         placeholder="Enter Suggestion"
                     />

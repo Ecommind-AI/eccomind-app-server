@@ -15,7 +15,8 @@ const AddNewSuggestion = ({ setIsModalwindow, suggestionsList, setChange }) => {
     const handleAddSuggestion = () => {
         const updatedList = [...state.list, state.newItemValue];
         setState({ ...state, list: updatedList, newItemValue: '' });
-        setChange("suggestions", updatedList); 
+        setChange("initial_suggestions", updatedList); 
+        setIsModalwindow(false);
     };
     
     return (
@@ -42,7 +43,7 @@ const AddNewSuggestion = ({ setIsModalwindow, suggestionsList, setChange }) => {
                         linkedValue={state.newItemValue}
                         onValueChange={handleChange}
                         inputType="textarea"
-                        name="suggestion"
+                        name="initial_suggestions"
                         className="window__main-field window__main-field--tall"
                         placeholder="Enter Suggestion"
                     />

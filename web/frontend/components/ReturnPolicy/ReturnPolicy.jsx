@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./ReturnPolicy.css";
 import LinkedInput from "../LinkedInput/LinkedInput";
 
-const ReturnPolicy = ({ updateData }) => {
+const ReturnPolicy = ({ updateData, returns_policy }) => {
     const [state, setState] = useState({
-        returnPolicy:''
+        returns_policy:returns_policy
     });
 
     useEffect(() => {
-        updateData("returnPolicy", state);
-    }, [state, updateData]);
+        updateData("returns_policy", state.returns_policy);
+    }, [state.returns_policy]); 
 
-    
     const handleChange = (name, value) => {
-        setState((prevState) => ({
-            ...prevState,
-            [name]: value
-        }));
+        setState((prevState) => {
+            const updatedState = {
+                ...prevState,
+                [name]: value
+            };
+            updateData(name, value); 
+            return updatedState;
+        });
     };
 
     return (
@@ -29,14 +32,14 @@ const ReturnPolicy = ({ updateData }) => {
             </div>
             <div className="block-container__settings">
                 <LinkedInput
-                    linkedValue={state.returnPolicy}
+                    linkedValue={state.returns_policy}
                     onValueChange={handleChange}
                     inputType="textarea"
 
-                    name="returnPolicy" 
+                    name="returns_policy" 
                     id="" 
                     className="block-container__settings-field--tall block-container__settings-field" 
-                    placeholder="Enter Return Policy "
+                    placeholder={state.returns_policy === undefined ? "Enter Return Policy" : ""}
                 />
             </div>
         </div>

@@ -2,30 +2,38 @@ import React, { useState, useRef, useEffect } from "react";
 import "./ChatbotConfiguration.css";
 import LinkedInput from "../LinkedInput/LinkedInput";
 
-const ChatbotConfiguration = ({ updateData }) => {
+const ChatbotConfiguration = ({ updateData, initial_message, shop_description, general_information, primary_color, secondary_color}) => {
   const [state, setState] = useState({
-    logo: '',
-    primaryColor: '#2563EB',  
-    secondaryColor: '#2563EB', 
-    initialMessage: '',
-    storeDesc: '',
-    generalInfo: ''
+    primary_color: primary_color,  
+    secondary_color: secondary_color, 
+    initial_message: initial_message,
+    shop_description: shop_description,
+    general_information: general_information
   });
 
   const primaryColorRef = useRef(null);  
   const secondaryColorRef = useRef(null);  
 
   useEffect(() => {
-    updateData("chatBotConfig", state);
-  }, [state, updateData]);
+    updateData("primary_color", state.primary_color);
+    updateData("secondary_color", state.secondary_color);
+    updateData("initial_message", state.initial_message);
+    updateData("shop_description", state.shop_description);
+    updateData("general_information", state.general_information);
+  }, [state]); 
   
-
   const handleChange = (name, value) => {
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
+    setState((prevState) => {
+      const updatedState = {
+        ...prevState,
+        [name]: value
+      };
+      updateData(name, value); 
+      return updatedState;
+    });
   };
+  
+  
 
   const handleColorChange = (name, color) => {
     handleChange(name, color);
@@ -43,7 +51,7 @@ const ChatbotConfiguration = ({ updateData }) => {
           Chatbot Configuration
         </h2>
       </div>
-      <div className="block-container__settings">
+      {/* <div className="block-container__settings">
         <div className="block-container__settings-sub_container block-container__settings-sub_container--twice_beetwen">
           <div className="block-container__settings-sub_container-main">
             <img src="../../assets/Icons/AIChatbotIcon.png" alt="" className="block-container__settings-sub_container-main-icon" />
@@ -57,9 +65,9 @@ const ChatbotConfiguration = ({ updateData }) => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="block-container__settings block-container__settings--twice_center">
+      <div className="block-container__settings block-container__settings--twice_center" style={{height:"50%"}}>
         <div className="block-container__settings-sub_container">
           <h3 className="block-container__settings-header">
             Primary Color
@@ -71,10 +79,11 @@ const ChatbotConfiguration = ({ updateData }) => {
             <div>
               <div
                 className="block-container__settings-field-color_circle_select"
-                style={{ backgroundColor: state.primaryColor }}
+                style={{ backgroundColor: state.primary_color }}
               ></div>
               <h3 className="block-container__settings-field-color_selected_name">
-                {state.primaryColor.slice(1).toUpperCase()}
+                {state.primary_color ? state.primary_color.slice(1).toUpperCase() : 'No color selected'}
+
               </h3>
             </div>
             <img src="../../assets/Icons/ArrowDown.png" alt="" className="block-container__settings-field-color_selected_img" />
@@ -82,8 +91,8 @@ const ChatbotConfiguration = ({ updateData }) => {
           <input
             type="color"
             ref={primaryColorRef}
-            value={state.primaryColor}
-            onChange={(e) => handleColorChange('primaryColor', e.target.value)}
+            value={state.primary_color}
+            onChange={(e) => handleColorChange('primary_color', e.target.value)}
             style={{ display: "none" }} 
           />
         </div>
@@ -99,10 +108,11 @@ const ChatbotConfiguration = ({ updateData }) => {
             <div>
               <div
                 className="block-container__settings-field-color_circle_select"
-                style={{ backgroundColor: state.secondaryColor }}
+                style={{ backgroundColor: state.secondary_color }}
               ></div>
               <h3 className="block-container__settings-field-color_selected_name">
-                {state.secondaryColor.slice(1).toUpperCase()}
+                {state.secondary_color ? state.secondary_color.slice(1).toUpperCase() : 'No color selected'}
+
               </h3>
             </div>
             <img src="../../assets/Icons/ArrowDown.png" alt="" className="block-container__settings-field-color_selected_img" />
@@ -110,25 +120,24 @@ const ChatbotConfiguration = ({ updateData }) => {
           <input
             type="color"
             ref={secondaryColorRef}
-            value={state.secondaryColor}
-            onChange={(e) => handleColorChange('secondaryColor', e.target.value)}
+            value={state.secondary_color}
+            onChange={(e) => handleColorChange('secondary_color', e.target.value)}
             style={{ display: "none" }} 
           />
         </div>
       </div>
 
-      <div className="block-container__settings">
+      <div className="block-container__settings" style={{height:"50%"}}>
         <h2 className="block-container__settings-header">
           Initial Message
         </h2>
         <LinkedInput
-          linkedValue={state.initialMessage}
+          linkedValue={state.initial_message}
           onValueChange={handleChange}
-          
-          name="initialMessage"
+          name="initial_message"
           type="text"
           className="block-container__settings-field"
-          placeholder="How can we help you today... 👋"
+          placeholder={state.initial_message === undefined ? "How can we help you today... 👋" : ""}
         />
       </div>
       <div className="block-container__settings">
@@ -136,13 +145,12 @@ const ChatbotConfiguration = ({ updateData }) => {
           Store Description
         </h2>
         <LinkedInput
-          linkedValue={state.storeDesc}
+          linkedValue={state.shop_description}
           onValueChange={handleChange}
           inputType="textarea"
-
-          name="storeDesc"
+          name="shop_description"
           className="block-container__settings-field--tall block-container__settings-field"
-          placeholder="Enter Store Description"
+          placeholder={state.shop_description === undefined ? "Enter Store Description" : ""}
         />
       </div>
       <div className="block-container__settings">
@@ -150,13 +158,13 @@ const ChatbotConfiguration = ({ updateData }) => {
           General Information
         </h2>
         <LinkedInput
-          linkedValue={state.generalInfo}
+          linkedValue={state.general_information}
           onValueChange={handleChange}
           inputType="textarea"
 
-          name="generalInfo"
+          name="general_information"
           className="block-container__settings-field--tall block-container__settings-field"
-          placeholder="General Information"
+          placeholder={general_information === undefined ? "General Information" : null}
         />
       </div>
     </div>

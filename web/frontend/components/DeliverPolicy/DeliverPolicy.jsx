@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./DeliverPolicy.css";
 import LinkedInput from "../LinkedInput/LinkedInput";
 
-const DeliverPolicy = ({ updateData }) => {
+const DeliverPolicy = ({ updateData, delivery_description }) => {
     const [state, setState] = useState({
-        deliverPolicy:''
+        delivery_description:delivery_description
     });
 
     useEffect(() => {
-        updateData("deliverPolicy", state);
-    }, [state, updateData]);
-      
-    
+        updateData("delivery_description", state.delivery_description);
+    }, [state.delivery_description]); 
+
     const handleChange = (name, value) => {
-        setState((prevState) => ({
-            ...prevState,
-            [name]: value
-        }));
+        setState((prevState) => {
+            const updatedState = {
+                ...prevState,
+                [name]: value
+            };
+            updateData(name, value); 
+            return updatedState;
+        });
     };
 
     return (
@@ -29,14 +32,14 @@ const DeliverPolicy = ({ updateData }) => {
             </div>
             <div className="block-container__settings">
                 <LinkedInput
-                    linkedValue={state.deliverPolicy}
+                    linkedValue={state.delivery_description}
                     onValueChange={handleChange}
                     inputType="textarea"
 
-                    name="deliverPolicy" 
+                    name="delivery_description" 
                     id="" 
                     className="block-container__settings-field--tall block-container__settings-field" 
-                    placeholder="Enter Deliver Policy "
+                    placeholder={state.delivery_description === undefined ? "Enter Delivery Policy" : ""}
                 />
             </div>
         </div>

@@ -107,7 +107,7 @@
 }
 
 .block-container__settings-field--tall{
-  height: 90%;
+  height: 80%;
   max-height: 20vh;
   resize: none;
   box-sizing: border-box;
@@ -115,7 +115,9 @@
 
 .block-container__settings-field--color_select{
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 10px;
   border: 1px solid #E2E8F0;
   border-radius: 7px;
@@ -140,7 +142,6 @@ div{
   margin-right: 10px;
 }
 
-
 .block-container__settings-field-color_selected_name{
   color:  #020617;
   font-family: Poppins;
@@ -148,10 +149,6 @@ div{
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
-
-.block-container__settings-field-color_selected_img{
-  margin-left: 20%;
 }
 
 .block-container__settings--twice_center{
@@ -230,4 +227,32 @@ div{
   border-radius: 32px;
   background:#2563EB;
   cursor: pointer;
+  position: relative; 
+}
+
+.setup-wizard__submit-button:disabled{
+  background:#647bad;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.setup-wizard__submit-button:disabled .tooltip {
+  position: absolute;
+  top: -150%; 
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  background-color: #333;
+  color: white;
+  font-size: 12px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  width: 25vh;
+}
+
+.setup-wizard__submit-button:disabled:hover .tooltip {
+  opacity: 1;
+  display: block;
 }

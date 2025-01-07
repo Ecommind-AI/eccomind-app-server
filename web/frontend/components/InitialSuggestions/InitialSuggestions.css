@@ -29,6 +29,12 @@
     cursor: pointer;
 }
 
+.block-container__title-button_add_new:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+    color: #6478a3;
+}
+
 .block-container__main{
     height: 100%;
     width: 100%;

@@ -3,33 +3,33 @@ import "./InitialSuggestions.css";
 import AddNewSuggestion from "./AddNewSuggestion";
 import EditSuggestions from "./EditSuggestions";
 
-const InitialSuggestions = ({ updateData }) => {
+const InitialSuggestions = ({ updateData, initial_suggestions }) => {
     const [isModalWindow, setIsModalWindow] = useState(false);
     const [state, setState] = useState({
-        suggestions: [
-            "Suggestion 1",
-            "Suggestion 2",
-            "Suggestion 3",
-        ]
+        initial_suggestions: initial_suggestions
     });
 
     const [itemIndex, setItemIndex] = useState(0);
     const [modalWindowNameToOpen, setModalWindowToOpen] = useState("AddNewSuggestion");
 
     useEffect(() => {
-        updateData("initialSuggestions", state);
-    }, [state, updateData]);
+        updateData("initial_suggestions", state.initial_suggestions);
+    }, [state.initial_suggestions]);
 
     const handleChange = (name, value) => {
-        setState((prevState) => ({
-            ...prevState,
-            [name]: value
-        }));
+        setState((prevState) => {
+            const updatedState = {
+                ...prevState,
+                [name]: value
+            };
+            updateData(name, value); 
+            return updatedState;
+        });
     };
     
     const handleDelete = (itemIndex) => {
-        const newSuggestions = state.suggestions.filter((prevState, index) => index !== itemIndex);
-        handleChange("suggestions", newSuggestions);
+        const newSuggestions = state.initial_suggestions.filter((prevState, index) => index !== itemIndex);
+        handleChange("initial_suggestions", newSuggestions);
     }
 
     const handleOpenModelWindow = (windowName, itemIndex) => {
@@ -41,10 +41,10 @@ const InitialSuggestions = ({ updateData }) => {
     return (
         <>
             {isModalWindow && modalWindowNameToOpen === "AddNewSuggestion" && (
-                <AddNewSuggestion setIsModalwindow={setIsModalWindow} suggestionsList={state.suggestions} setChange={handleChange}/>
+                <AddNewSuggestion setIsModalwindow={setIsModalWindow} suggestionsList={state.initial_suggestions} setChange={handleChange}/>
             )}
             {isModalWindow && modalWindowNameToOpen === "EditSuggestions" && (
-                <EditSuggestions setIsModalwindow={setIsModalWindow} itemIndex={itemIndex} suggestionsList={state.suggestions} setChange={handleChange}/>
+                <EditSuggestions setIsModalwindow={setIsModalWindow} itemIndex={itemIndex} suggestionsList={state.initial_suggestions} setChange={handleChange}/>
             )}
 
             <div className="block-container" style={{ padding: "0", gap: "0" }}>
@@ -61,9 +61,11 @@ const InitialSuggestions = ({ updateData }) => {
                         <button
                             onClick={() => {
                                 setModalWindowToOpen("AddNewSuggestion");
-                                setIsModalWindow(true);
+                                setIsModalWindow(true)
                             }}
                             className="block-container__title-button_add_new"
+                            disabled={state.initial_suggestions.length === 3}
+                            
                         >
                             Add new
                         </button>
@@ -71,7 +73,7 @@ const InitialSuggestions = ({ updateData }) => {
                 </div>
                 <div className="block-container__main">
                     <ul className="block-container__main-list">
-                        {state.suggestions.map((element, index) => {
+                        {state.initial_suggestions.map((element, index) => {
                             return (
                                 <li key={index} className="block-container__main-item">
                                     <div className="block-container__main-item-suggestion">

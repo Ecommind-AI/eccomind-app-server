@@ -24,7 +24,8 @@ const AddNewQuestionsAndAnswers = ({setIsModalwindow, questionsAndAnswersList, s
     const handleAddQuestionAndAnswer = () => {
         const updatedList = [...state.list, state.newItemValue];
         setState({ ...state, list: updatedList, newItemValue: { question: '', answer: '' } });
-        setChange("questionsAndAnswers", updatedList); 
+        setChange("FAQs", updatedList); 
+        setIsModalwindow(false);
     };
     
     return (

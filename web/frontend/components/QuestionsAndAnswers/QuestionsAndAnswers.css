@@ -13,6 +13,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top: -12%;
+    z-index: 10;
+    background-color: #fff;
+    position: sticky;
 }
 
 .block-container__main-item-main {

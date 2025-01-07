@@ -12,7 +12,8 @@ const EditQuestionAndAnswer = ({ setIsModalwindow, itemIndex, questionsAndAnswer
     };
 
     const handleSaveChange = () => {
-        setChange("questionsAndAnswers", state);
+        setChange("FAQs", state);
+        setIsModalwindow(false);
     };
 
     return (
