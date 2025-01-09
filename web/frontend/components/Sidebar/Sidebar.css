@@ -2,7 +2,7 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"); */
 
 .sidebar {
-  width: 30%;
+  width: 20%;
   height: 100vh;
   background-color: #f8f9fc;
   display: flex;
@@ -30,7 +30,7 @@
 }
 
 .logo-text {
-  font-size: 1vw;
+  font-size: 1.1vw;
   font-weight: 700;
   color: #1e1e2d;
   margin: 0;

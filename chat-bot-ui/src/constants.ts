@@ -20,6 +20,12 @@ export const defaultInitialMessages: Message[] = [
 ];
 export const ECOMMIND_SERVER_URL =
   "https://sales-mate-app.onrender.com";
+<<<<<<< HEAD
+=======
+
+export const SHOP_DOMAIN =
+  window.shopDomain || "shoesstore123235.myshopify.com";
+>>>>>>> cb22cbbddaf75d334d5d2ddb3af2a1641cd63833
 
 export const CURRENCY_SYMBOLS: Record<string, string> = {
   ILS: "₪",
