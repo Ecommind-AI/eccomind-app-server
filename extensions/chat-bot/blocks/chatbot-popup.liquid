@@ -5,8 +5,9 @@
 
 
 <script>
-  console.log("Shop Domain:", Shopify.shop);
+  console.log("Shopify Domain:", Shopify.shop);
   window.shopDomain = Shopify.shop;
+  console.log("window.shopDomain:", window.shopDomain);
 
   document.addEventListener('DOMContentLoaded', function () {
     const root = document.getElementById('chatbot-root');

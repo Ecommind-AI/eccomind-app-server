@@ -5,7 +5,8 @@ import { EcommindServerAPI } from "../api/eccommind-api";
 export const useShopData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [shopData, setShopData] = useState<ShopData | null>(null);
-  const shopDomain = window.shopDomain// || "shoesstore123235.myshopify.com";
+  const shopDomain = window.shopDomain || "em-network.myshopify.com";
+  console.log("Chatbot Extension window.shopDomain: ", window.shopDomain);
 
   useEffect(() => {
     const fetchShopData = async () => {
