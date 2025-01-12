@@ -27,6 +27,8 @@
     font-weight: 400;
     line-height: 200%; 
     width: 100%; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 
 

@@ -1,0 +1,134 @@
+.block-container--chat{
+    padding: 0;
+}
+
+.block-container__header{
+    width: 100%;
+    height: 9vh;
+    border-radius: 12px 12px 0px 02px;
+    padding: 10px;
+    position: relative;
+    color: #FFF;
+}
+
+.block-container__header-logo{
+    position: absolute;
+    width: 7vh;
+    height: 7vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin-bottom: 0;
+}
+
+.block-container__header-logo-img{
+    width: 70%;
+    height: 70%;
+}
+
+.block-container__header-title{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.block-container__header-title-text{
+    margin-left: 4px;
+}
+
+.block-container__chat{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: #F1F5F9;
+    margin-top: -5vh;
+    overflow-y: auto;
+}
+
+.block-container__chat-messages{
+    margin-top: 25px;
+    width: 100%;
+    height: 85%;
+}
+
+.block-container__main-chat-message-container{
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.block-container__main-chat-message-container--bot{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.block-container__main-chat-message-container--user{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.block-container__main-chat-message{
+    min-width: 30%;
+    height: 5vh;
+    border-radius: 12px;
+    background:#FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 0.7rem;
+}
+
+.block-container__main-chat-message--select{
+    min-width: 30%;
+    height: 5vh;
+    border-radius: 8px;
+    border: 1px dashed #2563EB;
+    background:#ffffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.block-container__input_send{
+    background-color: #FFF;
+    padding: 10px;
+    height: 7vh;
+    width: 100%;
+    margin-top: -3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.block-container__chat-input_send-field{
+    width: 80%;
+    margin-right: 5px;
+    border-radius: 20px;
+    border: 1px solid #b4b4b4;
+    padding: 7px;
+}
+
+.block-container__chat-input_send-field:focus{
+    outline: none;
+    font-size: 0.8rem;
+}
+.block-container__chat-input_send-button{
+    width: 4.5vh;
+    height: 4.5vh;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+}

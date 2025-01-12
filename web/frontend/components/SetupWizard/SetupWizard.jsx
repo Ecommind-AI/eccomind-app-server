@@ -27,17 +27,14 @@ const SetupWizard = () => {
   const [isSetupDataChaged, setIsSetupDataChanged] = useState(false);
 
   useEffect(() => {
-    const dataChanged = JSON.stringify(initialSetupData) !== JSON.stringify(setupData);
-    setIsSetupDataChanged(dataChanged);
+    setIsSetupDataChanged(JSON.stringify(initialSetupData) !== JSON.stringify(setupData));
   }, [setupData, initialSetupData]);
-  
-  
 
   useEffect(()=>{
     const fetchData = async () => {
       try{
         //setInitialData(serverData);
-        setData(initialSetupData);
+        setSetupData(initialSetupData);
       } catch (error) {
 
       }
@@ -52,17 +49,13 @@ const SetupWizard = () => {
       [key]: newData,
     }));
   }, []);
-  
-  useEffect(() => {
-    setInitialSetupData(setupData);
-  }, [setupData]);
-  
 
   const SaveChanges = () => {
     console.log("Saving data: ", setupData);
     try{
       //setInitialData(serverData);
       setInitialSetupData(setupData);
+      setIsSetupDataChanged(false); 
     } catch (error) {
 
     }
@@ -101,11 +94,18 @@ const SetupWizard = () => {
             updateData={updateData} 
             FAQs={setupData.FAQs}
           />
-          <AIChatBotPreview />
+          <AIChatBotPreview 
+            initial_message={setupData.initial_message}
+            primary_color={setupData.primary_color}
+            secondary_color={setupData.secondary_color}
+            initial_suggestions={setupData.initial_suggestions}
+            FAQs={setupData.FAQs}
+          />
           <div className="setup-wizard__submit-container">
             <button
               className="setup-wizard__submit-button"
               onClick={SaveChanges}
+              disabled={!isSetupDataChaged}
             >
               Save Changes
               <div className="tooltip">{!isSetupDataChaged ? "Change setup data to save" : "Click to save"}</div>
