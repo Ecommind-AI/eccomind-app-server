@@ -1,5 +1,9 @@
 import React from "react";
+import AIChatbotIcon from "../../assets/Icons/AIChatbotIcon.png";
 import "./Sidebar.css";
+import WelcomIcon from "../../assets/Icons/WelcomIcon.png"
+import SetupWizardIcon from "../../assets/Icons/SetupWizardIcon.png"
+import InsightsIcon from "../../assets/Icons/InsightsIcon.png"
 
 const Sidebar = ({ setCurrentStep, currentStep }) => {
   const handleChangeStepOnClick = (step) => {
@@ -10,7 +14,7 @@ const Sidebar = ({ setCurrentStep, currentStep }) => {
     <div className="sidebar">
       <div className="logo-container">
         <div className="logo-icon">
-          <img src="../../assets/Icons/AIChatbotIcon.png" alt="" />
+          <img src={AIChatbotIcon} alt="" />
         </div>
         <h1 className="logo-text">AI Chatbot</h1>
       </div>
@@ -22,7 +26,7 @@ const Sidebar = ({ setCurrentStep, currentStep }) => {
             onClick={() => handleChangeStepOnClick("Welcome")}
           >
             <div className="icon">
-              <img src="../../assets/Icons/WelcomIcon.png" alt="" />
+              <img src={WelcomIcon} alt="" />
             </div>
             <span>Welcome!</span>
           </li>
@@ -31,7 +35,7 @@ const Sidebar = ({ setCurrentStep, currentStep }) => {
             onClick={() => handleChangeStepOnClick("SetupWizard")}
           >
             <div className="icon">
-              <img src="../../assets/Icons/SetupWizardIcon.png" alt="" />
+              <img src={SetupWizardIcon} alt="" />
             </div>
             <span>Setup Wizard</span>
           </li>
@@ -40,7 +44,7 @@ const Sidebar = ({ setCurrentStep, currentStep }) => {
             onClick={() => handleChangeStepOnClick("Insights")}
           >
             <div className="icon">
-              <img src="../../assets/Icons/InsightsIcon.png" alt="" />
+              <img src={InsightsIcon} alt="" />
             </div>
             <span>Insights</span>
           </li>

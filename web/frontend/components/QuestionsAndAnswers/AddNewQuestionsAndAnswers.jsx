@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./QuestionsAndAnswers.css";
 import LinkedInput from "../LinkedInput/LinkedInput";
+import InitialSuggestionsIcon from "../../assets/Icons/InitialSuggestionsIcon.png"
+import Exit from "../../assets/svgs/Exit.svg"
+
 
 const AddNewQuestionsAndAnswers = ({setIsModalwindow, questionsAndAnswersList, setChange}) => {
     const [state, setState] = useState({
@@ -33,14 +36,14 @@ const AddNewQuestionsAndAnswers = ({setIsModalwindow, questionsAndAnswersList, s
             <div className="modal_block__container-window modal_block__container-window--tall">
                 <div className="window_header">
                     <div className="window_header-title">
-                        <img src="../../assets/Icons/InitialSuggestionsIcon.png" alt="" className="window__header-img"/>
+                        <img src={InitialSuggestionsIcon} alt="" className="window__header-img"/>
                         <h2 className="window__header-text">
                             Add New Question and Answer
                         </h2>
                     </div>
                     <div className="window__header-exit">
                         <button className="window__header-exit-button" onClick={() => setIsModalwindow(false)}>
-                            <img src="../../assets/svgs/Exit.svg" alt="" />
+                            <img src={Exit} alt="" />
                         </button>
                     </div>
                 </div>

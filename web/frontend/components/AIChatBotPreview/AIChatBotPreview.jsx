@@ -1,5 +1,6 @@
 import React from "react";
 import "./AIChatBotPreview.css";
+import AIButtonLogo from "../../assets/svgs/AIButtonLogo.svg"
 
 const AIChatBotPreview = ({ initial_message, primary_color, secondary_color, initial_suggestions, FAQs}) => {
     return (
@@ -12,7 +13,7 @@ const AIChatBotPreview = ({ initial_message, primary_color, secondary_color, ini
                     <h1 className="block-container__header-title-text">AI Chatbot Preview</h1>
                 </div>
                 <div className="block-container__header-logo"  style={{backgroundColor:primary_color}}>
-                    <img src="../../assets/svgs/AIButtonLogo.svg" alt="" className="block-container__header-logo-img"/>
+                    <img src={AIButtonLogo} alt="" className="block-container__header-logo-img"/>
                 </div>
             </div>
             <div className="block-container__chat">

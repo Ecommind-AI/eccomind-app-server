@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./InitialSuggestions.css";
 import AddNewSuggestion from "./AddNewSuggestion";
 import EditSuggestions from "./EditSuggestions";
+import InitialSuggestionsIcon from "../../assets/Icons/InitialSuggestionsIcon.png"
+import Edit from "../../assets/svgs/Edit.svg"
+import Bin from "../../assets/svgs/Bin.svg"
 
 const InitialSuggestions = ({ updateData, initial_suggestions }) => {
     const [isModalWindow, setIsModalWindow] = useState(false);
@@ -51,7 +54,7 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
                 <div className="block-container__title block-container__title--combined">
                     <div className="title-main">
                         <img
-                            src="../../assets/Icons/InitialSuggestionsIcon.png"
+                            src={InitialSuggestionsIcon}
                             alt=""
                             className="block-container__title-img"
                         />
@@ -88,7 +91,7 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
                                             }}
                                             className="block-container__main-item-edit-button block-container__main-item-edit-button--left"
                                         >
-                                            <img src="../../assets/svgs/Edit.svg" alt="" />
+                                            <img src={Edit} alt="" />
                                         </button>
                                         <button
                                             onClick={() => {
@@ -96,7 +99,7 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
                                             }}
                                             className="block-container__main-item-edit-button block-container__main-item-edit-button--right"
                                         >
-                                            <img src="../../assets/svgs/Bin.svg" alt="" />
+                                            <img src={Bin} alt="" />
                                         </button>
                                     </div>
                                 </li>

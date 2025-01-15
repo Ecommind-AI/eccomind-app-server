@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./QuestionsAndAnswers.css";
 import AddNewQuestionsAndAnswers from "./AddNewQuestionsAndAnswers";
 import EditQuestionAndAnswer from "./EditQuestionAndanswer";
+import InitialSuggestionsIcon from "../../assets/Icons/InitialSuggestionsIcon.png"
+import Edit from "../../assets/svgs/Edit.svg"
+import Bin from "../../assets/svgs/Bin.svg"
 
 const QuestionsAndAnswers = ({ updateData, FAQs }) => {
   const [isModalWindow, setIsModalWindow] = useState(false);
@@ -63,7 +66,7 @@ const QuestionsAndAnswers = ({ updateData, FAQs }) => {
         <div className="block-container__title block-container__title--combined">
           <div className="title-main">
             <img
-              src="../../assets/Icons/InitialSuggestionsIcon.png"
+              src={InitialSuggestionsIcon}
               alt=""
               className="block-container__title-img"
             />
@@ -104,7 +107,7 @@ const QuestionsAndAnswers = ({ updateData, FAQs }) => {
                         }}
                         className="block-container__main-item-edit-button block-container__main-item-edit-button--left"
                       >
-                        <img src="../../assets/svgs/Edit.svg" alt="" />
+                        <img src={Edit} alt="" />
                       </button>
                       <button
                         onClick={() => {
@@ -112,7 +115,7 @@ const QuestionsAndAnswers = ({ updateData, FAQs }) => {
                         }}
                         className="block-container__main-item-edit-button block-container__main-item-edit-button--right"
                       >
-                        <img src="../../assets/svgs/Bin.svg" alt="" />
+                        <img src={Bin} alt="" />
                       </button>
                     </div>
                   </div>

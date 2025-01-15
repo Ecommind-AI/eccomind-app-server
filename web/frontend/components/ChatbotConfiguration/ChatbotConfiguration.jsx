@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatbotConfiguration.css";
 import LinkedInput from "../LinkedInput/LinkedInput";
+import ChatBotConfigIcon from "../../assets/Icons/ChatBotConfigIcon.png"
+import ArrowDown from "../../assets/Icons/ArrowDown.png"
 
 const ChatbotConfiguration = ({
   updateData,
@@ -52,7 +54,7 @@ const ChatbotConfiguration = ({
     <div className="block-container">
       <div className="block-container__title">
         <img
-          src="../../assets/Icons/ChatBotConfigIcon.png"
+          src={ChatBotConfigIcon}
           alt=""
           className="block-container__title-img"
         />
@@ -96,7 +98,7 @@ const ChatbotConfiguration = ({
               </h3>
             </div>
             <img
-              src="../../assets/Icons/ArrowDown.png"
+              src={ArrowDown}
               alt=""
               className="block-container__settings-field-color_selected_img"
             />
@@ -128,7 +130,7 @@ const ChatbotConfiguration = ({
               </h3>
             </div>
             <img
-              src="../../assets/Icons/ArrowDown.png"
+              src={ArrowDown}
               alt=""
               className="block-container__settings-field-color_selected_img"
             />

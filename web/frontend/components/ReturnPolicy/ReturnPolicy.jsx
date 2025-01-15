@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ReturnPolicy.css";
 import LinkedInput from "../LinkedInput/LinkedInput";
+import ReturnPolicyIcon from "../../assets/Icons/ReturnPolicyIcon.png"
 
 const ReturnPolicy = ({ updateData, returns_policy }) => {
     const [state, setState] = useState({
@@ -25,7 +26,7 @@ const ReturnPolicy = ({ updateData, returns_policy }) => {
     return (
         <div className="block-container">
             <div className="block-container__title">
-                <img src="../../assets/Icons/ReturnPolicyIcon.png" alt="" className="block-container__title-img"/>
+                <img src={ReturnPolicyIcon} alt="" className="block-container__title-img"/>
                 <h2 className="block-container__title-text">
                     Return Policy 
                 </h2>
