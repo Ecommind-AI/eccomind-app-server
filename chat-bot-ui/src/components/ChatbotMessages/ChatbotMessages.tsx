@@ -20,7 +20,7 @@ const ChatbotMessages: React.FC<ChatbotMessagesProps> = ({
     const messagesContainer = document.getElementById("messages-container");
     if (messagesContainer) {
       messagesContainer.scroll({
-        top: messagesContainer.scrollHeight + 1000,
+        top: messagesContainer.scrollHeight,
         behavior: "smooth",
       });
     }
