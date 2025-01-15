@@ -31,6 +31,7 @@ const app = express();
 
 app.use(cors());
 
+app.use(serveStatic(STATIC_PATH, { index: false }));
 
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());
@@ -57,7 +58,6 @@ app.use("/api/chat", chatRouter())
 
 
 app.use(shopify.cspHeaders());
-app.use(serveStatic(STATIC_PATH, { index: false }));
 
 app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
   res
