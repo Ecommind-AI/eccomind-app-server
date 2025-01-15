@@ -14,7 +14,13 @@ const shopSchema = new mongoose.Schema({
   phone: { type: String },
   initial_suggestions: { type: Array },
   initial_message: { type: String },
+  delivery_description: { type: String },
+  shop_description: { type: String },
+  general_information: { type: String },
+  returns_policy: { type: String },
   primary_color: { type: String },
+  secondary_color: { type: String },
+  FAQs: { type: String },
   test_mode: { type: Boolean }
 });
 

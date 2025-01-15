@@ -35,7 +35,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    font-size: 0.8rem;
+    font-size: 0.9vw;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -87,7 +87,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    font-size: 0.7rem;
+    font-size: 0.9vw;
 }
 
 .block-container__main-chat-message--select{
@@ -123,7 +123,7 @@
 
 .block-container__chat-input_send-field:focus{
     outline: none;
-    font-size: 0.8rem;
+    font-size: 0.9vw;
 }
 .block-container__chat-input_send-button{
     width: 4.5vh;

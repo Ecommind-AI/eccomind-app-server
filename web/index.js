@@ -49,11 +49,12 @@ app.post(
 // If you are adding routes outside of the /api path, remember to
 // also add a proxy rule for them in web/frontend/vite.config.js
 
+app.use(express.json());
+
 app.use("/api/auth/*", shopify.validateAuthenticatedSession());
 app.use("/api/merchant", shopify.validateAuthenticatedSession(), merchantRouter());
 app.use("/api/chat", chatRouter())
 
-app.use(express.json());
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));

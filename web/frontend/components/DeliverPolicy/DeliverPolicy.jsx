@@ -32,14 +32,14 @@ const DeliverPolicy = ({ updateData, delivery_description }) => {
             </div>
             <div className="block-container__settings">
                 <LinkedInput
-                    linkedValue={state.delivery_description}
+                    linkedValue={delivery_description}
                     onValueChange={handleChange}
                     inputType="textarea"
 
                     name="delivery_description" 
                     id="" 
                     className="block-container__settings-field--tall block-container__settings-field" 
-                    placeholder={state.delivery_description === undefined ? "Enter Delivery Policy" : ""}
+                    placeholder={delivery_description === undefined ? "Enter Delivery Policy" : ""}
                 />
             </div>
         </div>

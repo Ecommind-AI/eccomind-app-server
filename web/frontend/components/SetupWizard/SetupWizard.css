@@ -6,7 +6,7 @@
   .title {
     color:#020617;
     font-family: Poppins;
-    font-size: 1.1vw;
+    font-size: 1vw;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -66,7 +66,7 @@
   margin-left: 12px;
   color:  #475569;
   font-family: Poppins;
-  font-size: 0.65rem;
+  font-size: 0.9vw;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -80,7 +80,7 @@
 .block-container__settings-header{
   color: #475569;
   font-family: Poppins;
-  font-size: 12px;
+  font-size: 0.9vw;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -95,7 +95,7 @@
   height: 6vh;
   color:#020617;
   font-family: Poppins;
-  font-size: 14px;
+  font-size: 0.9vw;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -145,7 +145,7 @@ div{
 .block-container__settings-field-color_selected_name{
   color:  #020617;
   font-family: Poppins;
-  font-size: 14px;
+  font-size: 0.9vw;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -190,7 +190,7 @@ div{
 }
 .block-container__settings-sub_container-main-text{
   font-family: Poppins;
-  font-size: 12px;
+  font-size: 0.9vw;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -220,7 +220,7 @@ div{
   color: #FFF;
   text-align: center;
   font-family: Poppins;
-  font-size: 12px;
+  font-size: 0.9vw;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -244,7 +244,7 @@ div{
   padding: 8px 12px;
   background-color: #333;
   color: white;
-  font-size: 12px;
+  font-size: 0.9vw;
   border-radius: 8px;
   opacity: 0;
   pointer-events: none;
@@ -255,4 +255,49 @@ div{
 .setup-wizard__submit-button:hover .tooltip {
   opacity: 1;
   display: block;
+}
+
+/* Loader styles */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #2563EB;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2563EB;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -32,14 +32,14 @@ const ReturnPolicy = ({ updateData, returns_policy }) => {
             </div>
             <div className="block-container__settings">
                 <LinkedInput
-                    linkedValue={state.returns_policy}
+                    linkedValue={returns_policy}
                     onValueChange={handleChange}
                     inputType="textarea"
 
                     name="returns_policy" 
                     id="" 
                     className="block-container__settings-field--tall block-container__settings-field" 
-                    placeholder={state.returns_policy === undefined ? "Enter Return Policy" : ""}
+                    placeholder={returns_policy === undefined ? "Enter Return Policy" : ""}
                 />
             </div>
         </div>

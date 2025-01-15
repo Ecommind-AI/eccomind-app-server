@@ -28,7 +28,7 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
     };
     
     const handleDelete = (itemIndex) => {
-        const newSuggestions = state.initial_suggestions.filter((prevState, index) => index !== itemIndex);
+        const newSuggestions = initial_suggestions.filter((prevState, index) => index !== itemIndex);
         handleChange("initial_suggestions", newSuggestions);
     }
 
@@ -41,10 +41,10 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
     return (
         <>
             {isModalWindow && modalWindowNameToOpen === "AddNewSuggestion" && (
-                <AddNewSuggestion setIsModalwindow={setIsModalWindow} suggestionsList={state.initial_suggestions} setChange={handleChange}/>
+                <AddNewSuggestion setIsModalwindow={setIsModalWindow} suggestionsList={initial_suggestions} setChange={handleChange}/>
             )}
             {isModalWindow && modalWindowNameToOpen === "EditSuggestions" && (
-                <EditSuggestions setIsModalwindow={setIsModalWindow} itemIndex={itemIndex} suggestionsList={state.initial_suggestions} setChange={handleChange}/>
+                <EditSuggestions setIsModalwindow={setIsModalWindow} itemIndex={itemIndex} suggestionsList={initial_suggestions} setChange={handleChange}/>
             )}
 
             <div className="block-container" style={{ padding: "0", gap: "0" }}>
@@ -64,7 +64,7 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
                                 setIsModalWindow(true)
                             }}
                             className="block-container__title-button_add_new"
-                            disabled={state.initial_suggestions.length === 3}
+                            disabled={initial_suggestions.length === 3}
                             
                         >
                             Add new
@@ -73,7 +73,7 @@ const InitialSuggestions = ({ updateData, initial_suggestions }) => {
                 </div>
                 <div className="block-container__main">
                     <ul className="block-container__main-list">
-                        {state.initial_suggestions.map((element, index) => {
+                        {initial_suggestions.map((element, index) => {
                             return (
                                 <li key={index} className="block-container__main-item">
                                     <div className="block-container__main-item-suggestion">
