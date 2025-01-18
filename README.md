@@ -89,7 +89,7 @@ Before setting up the project, ensure you have the following installed:
    - **Deploy the Server on Render:**
      To deploy a new version of the app server, push your code to the `main` branch and then go to Render to deploy the latest commit.
    - **Deploy the Shopify Extension:**
-     After building the chatbot extension, run the following command to deploy the extension hosted on Shopify:
+     After building the chatbot extension, run the following command from the root directory to deploy the extension hosted on Shopify:
      ```bash
      npm run deploy
      ```
