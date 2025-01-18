@@ -1,4 +1,4 @@
-# Ecommind Shopify App
+# Shopify AI Chatbot Assistant
 
 ## Project Overview
 
@@ -14,7 +14,10 @@ The app has the following main functionalities:
 
 Before setting up the project, ensure you have the following installed:
 - **Node.js** (version 16 or higher)
-- **Shopify CLI**
+- **Shopify CLI**: Install it using the following command:
+  ```bash
+  npm install -g @shopify/cli@latest
+  ```
 - **npm** (comes with Node.js)
 - **Render account** (for deploying the server)
 
@@ -74,6 +77,54 @@ Before setting up the project, ensure you have the following installed:
      ```bash
      npm run deploy
      ```
+
+## Creating a New App Instance
+
+If you want to create a new app instance to generate a different installation link (or for separate Shopify App Store listings), follow these steps:
+
+1. **Clone the Repository**
+   Create a new copy of this repository:
+   ```bash
+   git clone <repository_url> new-app-instance
+   cd new-app-instance
+   ```
+
+2. **Update the `shopify.app.toml` File**
+   Update the following properties in the `shopify.app.toml` file to reflect the new app:
+   - **`client_id`**: Replace with the API key of the new app.
+   - **`name`**: Set a new name for the app.
+   - **`handle`**: Assign a unique handle for the app.
+   - **`application_url`**: Set the URL where the new app will be hosted.
+   - **`auth.redirect_urls`**: Update with the new callback URL (usually `<application_url>/api/auth/callback`).
+
+3. **Set Up Environment Variables**
+   Create a new `.env` file and update the values to match the new app:
+   ```env
+   SHOPIFY_API_KEY=<new_shopify_api_key>
+   SHOPIFY_API_SECRET=<new_shopify_api_secret>
+   SCOPES=read_products
+   SHOPIFY_CHAT_BOT_ID=<new_chatbot_id>
+   MONGO_URI=<your_mongo_connection_string>
+   ```
+
+   Ensure the same updates are made in the `./web/.env` file.
+
+4. **Update Hosting Settings**
+   If deploying the app server on Render or another hosting platform, set up a new service and configure it to use the updated repository and environment variables.
+
+5. **Rebuild and Deploy the App**
+   - Build the chatbot extension:
+     ```bash
+     cd extensions/chat-bot-ui
+     npm run build
+     ```
+   - Deploy the server and Shopify extension:
+     ```bash
+     npm run deploy
+     ```
+
+6. **Test the New App Instance**
+   Test the new app in a Shopify development store to ensure it works as expected and generates a new installation link.
 
 ## Explanation of `shopify.app.toml`
 
@@ -140,55 +191,6 @@ The `shopify.app.toml` file is a configuration file for the Shopify CLI, definin
 
 - **Static Assets (`./ecommind-app-server/extensions/chat-bot/assets`)**
   - Contains the compiled JavaScript and CSS files for the chatbot UI extension.
-
-## Creating a New App Instance
-
-If you want to create a new app instance to generate a different installation link (or for separate Shopify App Store listings), follow these steps:
-
-1. **Clone the Repository**
-   Create a new copy of this repository:
-   ```bash
-   git clone <repository_url> new-app-instance
-   cd new-app-instance
-   ```
-
-2. **Update the `shopify.app.toml` File**
-   Update the following properties in the `shopify.app.toml` file to reflect the new app:
-   - **`client_id`**: Replace with the API key of the new app.
-   - **`name`**: Set a new name for the app.
-   - **`handle`**: Assign a unique handle for the app.
-   - **`application_url`**: Set the URL where the new app will be hosted.
-   - **`auth.redirect_urls`**: Update with the new callback URL (usually `<application_url>/api/auth/callback`).
-
-3. **Set Up Environment Variables**
-   Create a new `.env` file and update the values to match the new app:
-   ```env
-   SHOPIFY_API_KEY=<new_shopify_api_key>
-   SHOPIFY_API_SECRET=<new_shopify_api_secret>
-   SCOPES=read_products
-   SHOPIFY_CHAT_BOT_ID=<new_chatbot_id>
-   MONGO_URI=<your_mongo_connection_string>
-   ```
-
-   Ensure the same updates are made in the `./web/.env` file.
-
-4. **Update Hosting Settings**
-   If deploying the app server on Render or another hosting platform, set up a new service and configure it to use the updated repository and environment variables.
-
-5. **Rebuild and Deploy the App**
-   - Build the chatbot extension:
-     ```bash
-     cd extensions/chat-bot-ui
-     npm run build
-     ```
-   - Deploy the server and Shopify extension:
-     ```bash
-     npm run deploy
-     ```
-
-6. **Test the New App Instance**
-   Test the new app in a Shopify development store to ensure it works as expected and generates a new installation link.
-
 
 ## Development Notes
 
