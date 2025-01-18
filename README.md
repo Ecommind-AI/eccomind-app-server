@@ -1,4 +1,4 @@
-# Shopify AI Chatbot Assistant
+# Ecommind Shopify App
 
 ## Project Overview
 
