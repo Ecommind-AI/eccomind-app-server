@@ -1,243 +1,267 @@
-# Shopify App Template for Node
+# Shopify AI Chatbot Assistant
 
-This is a template for building a [Shopify app](https://shopify.dev/docs/apps/getting-started) using Node and React. It contains the basics for building a Shopify app.
+## Project Overview
 
-Rather than cloning this repo, you can use your preferred package manager and the Shopify CLI with [these steps](#installing-the-template).
+This project is a plug-and-play Shopify app created using the Shopify CLI. It provides an AI chatbot assistant that Shopify merchants can install and customize to fit their store's branding and policies. The app comes with an admin panel for customization and a theme extension for displaying the chatbot in the store.
 
-## Benefits
+The app has the following main functionalities:
+- Fetches all shop products into the database upon installation.
+- Provides a setup page where merchants can customize chatbot settings (e.g., shop description, return policy, contact details, colors).
+- Offers a REST API to communicate with both the admin frontend and the chatbot theme extension.
+- Listens to product updates via webhooks powered by Google Pub/Sub.
 
-Shopify apps are built on a variety of Shopify tools to create a great merchant experience. The [create an app](https://shopify.dev/docs/apps/getting-started/create) tutorial in our developer documentation will guide you through creating a Shopify app using this template.
+## Requirements
 
-The Node app template comes with the following out-of-the-box functionality:
+Before setting up the project, ensure you have the following installed:
+- **Node.js** (version 16 or higher)
+- **Shopify CLI**
+- **npm** (comes with Node.js)
+- **Render account** (for deploying the server)
 
-- OAuth: Installing the app and granting permissions
-- GraphQL Admin API: Querying or mutating Shopify admin data
-- REST Admin API: Resource classes to interact with the API
-- Shopify-specific tooling:
-  - AppBridge
-  - Polaris
-  - Webhooks
+## Installation and Setup
 
-## Tech Stack
-
-This template combines a number of third party open-source tools:
-
-- [Express](https://expressjs.com/) builds the backend.
-- [Vite](https://vitejs.dev/) builds the [React](https://reactjs.org/) frontend.
-- [React Router](https://reactrouter.com/) is used for routing. We wrap this with file-based routing.
-- [React Query](https://react-query.tanstack.com/) queries the Admin API.
-- [`i18next`](https://www.i18next.com/) and related libraries are used to internationalize the frontend.
-  - [`react-i18next`](https://react.i18next.com/) is used for React-specific i18n functionality.
-  - [`i18next-resources-to-backend`](https://github.com/i18next/i18next-resources-to-backend) is used to dynamically load app translations.
-  - [`@formatjs/intl-localematcher`](https://formatjs.io/docs/polyfills/intl-localematcher/) is used to match the user locale with supported app locales.
-  - [`@formatjs/intl-locale`](https://formatjs.io/docs/polyfills/intl-locale) is used as a polyfill for [`Intl.Locale`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) if necessary.
-  - [`@formatjs/intl-pluralrules`](https://formatjs.io/docs/polyfills/intl-pluralrules) is used as a polyfill for [`Intl.PluralRules`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules) if necessary.
-
-The following Shopify tools complement these third-party tools to ease app development:
-
-- [Shopify API library](https://github.com/Shopify/shopify-node-api) adds OAuth to the Express backend. This lets users install the app and grant scope permissions.
-- [App Bridge React](https://shopify.dev/docs/apps/tools/app-bridge/getting-started/using-react) adds authentication to API requests in the frontend and renders components outside of the App’s iFrame.
-- [Polaris React](https://polaris.shopify.com/) is a powerful design system and component library that helps developers build high quality, consistent experiences for Shopify merchants.
-- [Custom hooks](https://github.com/Shopify/shopify-frontend-template-react/tree/main/hooks) make authenticated requests to the Admin API.
-- [File-based routing](https://github.com/Shopify/shopify-frontend-template-react/blob/main/Routes.jsx) makes creating new pages easier.
-- [`@shopify/i18next-shopify`](https://github.com/Shopify/i18next-shopify) is a plugin for [`i18next`](https://www.i18next.com/) that allows translation files to follow the same JSON schema used by Shopify [app extensions](https://shopify.dev/docs/apps/checkout/best-practices/localizing-ui-extensions#how-it-works) and [themes](https://shopify.dev/docs/themes/architecture/locales/storefront-locale-files#usage).
-
-## Getting started
-
-### Requirements
-
-1. You must [download and install Node.js](https://nodejs.org/en/download/) if you don't already have it.
-1. You must [create a Shopify partner account](https://partners.shopify.com/signup) if you don’t have one.
-1. You must create a store for testing if you don't have one, either a [development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) or a [Shopify Plus sandbox store](https://help.shopify.com/en/partners/dashboard/managing-stores/plus-sandbox-store).
-
-### Installing the template
-
-This template can be installed using your preferred package manager:
-
-Using yarn:
-
-```shell
-yarn create @shopify/app --template=node
-```
-
-Using npm:
-
-```shell
-npm init @shopify/app@latest -- --template=node
-```
-
-Using pnpm:
-
-```shell
-pnpm create @shopify/app@latest --template=node
-```
-
-This will clone the template and install the required dependencies.
-
-#### Local Development
-
-[The Shopify CLI](https://shopify.dev/docs/apps/tools/cli) connects to an app in your Partners dashboard. It provides environment variables, runs commands in parallel, and updates application URLs for easier development.
-
-You can develop locally using your preferred package manager. Run one of the following commands from the root of your app.
-
-Using yarn:
-
-```shell
-yarn dev
-```
-
-Using npm:
-
-```shell
-npm run dev
-```
-
-Using pnpm:
-
-```shell
-pnpm run dev
-```
-
-Open the URL generated in your console. Once you grant permission to the app, you can start development.
-
-## Deployment
-
-### Application Storage
-
-This template uses [SQLite](https://www.sqlite.org/index.html) to store session data. The database is a file called `database.sqlite` which is automatically created in the root. This use of SQLite works in production if your app runs as a single instance.
-
-The database that works best for you depends on the data your app needs and how it is queried. You can run your database of choice on a server yourself or host it with a SaaS company. Here’s a short list of databases providers that provide a free tier to get started:
-
-| Database   | Type             | Hosters                                                                                                                                                                                                                               |
-| ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MySQL      | SQL              | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-mysql), [Planet Scale](https://planetscale.com/), [Amazon Aurora](https://aws.amazon.com/rds/aurora/), [Google Cloud SQL](https://cloud.google.com/sql/docs/mysql) |
-| PostgreSQL | SQL              | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-postgresql), [Amazon Aurora](https://aws.amazon.com/rds/aurora/), [Google Cloud SQL](https://cloud.google.com/sql/docs/postgres)                                   |
-| Redis      | Key-value        | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-redis), [Amazon MemoryDB](https://aws.amazon.com/memorydb/)                                                                                                        |
-| MongoDB    | NoSQL / Document | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-mongodb), [MongoDB Atlas](https://www.mongodb.com/atlas/database)                                                                                                  |
-
-To use one of these, you need to change your session storage configuration. To help, here’s a list of [SessionStorage adapter packages](https://github.com/Shopify/shopify-api-js/blob/main/packages/shopify-api/docs/guides/session-storage.md).
-
-### Build
-
-The frontend is a single page app. It requires the `SHOPIFY_API_KEY`, which you can find on the page for your app in your partners dashboard. Paste your app’s key in the command for the package manager of your choice:
-
-Using yarn:
-
-```shell
-cd web/frontend/ && SHOPIFY_API_KEY=REPLACE_ME yarn build
-```
-
-Using npm:
-
-```shell
-cd web/frontend/ && SHOPIFY_API_KEY=REPLACE_ME npm run build
-```
-
-Using pnpm:
-
-```shell
-cd web/frontend/ && SHOPIFY_API_KEY=REPLACE_ME pnpm run build
-```
-
-You do not need to build the backend.
-
-## Hosting
-
-When you're ready to set up your app in production, you can follow [our deployment documentation](https://shopify.dev/docs/apps/deployment/web) to host your app on a cloud provider like [Heroku](https://www.heroku.com/) or [Fly.io](https://fly.io/).
-
-When you reach the step for [setting up environment variables](https://shopify.dev/docs/apps/deployment/web#set-env-vars), you also need to set the variable `NODE_ENV=production`.
-
-## Known issues
-
-### Hot module replacement and Firefox
-
-When running the app with the CLI in development mode on Firefox, you might see your app constantly reloading when you access it.
-That happened in previous versions of the CLI, because of the way HMR websocket requests work.
-
-We fixed this issue with v3.4.0 of the CLI, so after updating it, you can make the following changes to your app's `web/frontend/vite.config.js` file:
-
-1. Change the definition `hmrConfig` object to be:
-
-   ```js
-   const host = process.env.HOST
-     ? process.env.HOST.replace(/https?:\/\//, "")
-     : "localhost";
-
-   let hmrConfig;
-   if (host === "localhost") {
-     hmrConfig = {
-       protocol: "ws",
-       host: "localhost",
-       port: 64999,
-       clientPort: 64999,
-     };
-   } else {
-     hmrConfig = {
-       protocol: "wss",
-       host: host,
-       port: process.env.FRONTEND_PORT,
-       clientPort: 443,
-     };
-   }
+1. **Clone the Repository**
+   ```bash
+   git clone <repository_url>
+   cd ecommind-app-server
    ```
 
-1. Change the `server.host` setting in the configs to `"localhost"`:
-
-   ```js
-   server: {
-     host: "localhost",
-     ...
+2. **Install Dependencies**
+   Run `npm install` in the root directory:
+   ```bash
+   npm install
    ```
 
-### I can't get past the ngrok "Visit site" page
+3. **Configure Environment Variables**
+   Create a `.env` file in the root directory (`./ecommind-app-server`) and configure the required environment variables. Example:
+   ```env
+   SHOPIFY_API_KEY=<your_shopify_api_key>
+   SHOPIFY_API_SECRET=<your_shopify_api_secret>
+   SCOPES=read_products
+   SHOPIFY_CHAT_BOT_ID=<your_chatbot_id>
+   MONGO_URI=<your_mongo_connection_string>
+   ```
 
-When you’re previewing your app or extension, you might see an ngrok interstitial page with a warning:
+   Additionally, create a `.env` file in the `./ecommind-app-server/web` directory with the following variable:
+   ```env
+   MONGO_URI=<your_mongo_connection_string>
+   ```
 
-```text
-You are about to visit <id>.ngrok.io: Visit Site
-```
+4. **Run the Project**
+   Use the following command from the root directory to start the app in development mode:
+   ```bash
+   npm run dev
+   ```
+   This command starts the Shopify app, including the admin UI and web server. The web server handles:
+   - Serving static files for the admin panel UI.
+   - Fetching and storing shop products upon installation.
+   - Registering webhooks via Google Pub/Sub to track product updates.
+   - Providing a REST API to the admin frontend and chatbot theme extension for retrieving and updating shop-specific configurations.
 
-If you click the `Visit Site` button, but continue to see this page, then you should run dev using an alternate tunnel URL that you run using tunneling software.
-We've validated that [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/run-tunnel/trycloudflare/) works with this template.
+5. **Build the Chatbot Extension**
+   Navigate to the `chat-bot-ui` directory and build the extension:
+   ```bash
+   cd extensions/chat-bot-ui
+   npm run build
+   ```
+   This will generate the static assets in the `./extensions/chat-bot/assets/` folder.
 
-To do that, you can [install the `cloudflared` CLI tool](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/), and run:
+6. **Deploying the App**
+   - **Deploy the Server on Render:**
+     To deploy a new version of the app server, push your code to the `main` branch and then go to Render to deploy the latest commit.
+   - **Deploy the Shopify Extension:**
+     After building the chatbot extension, run the following command to deploy the extension hosted on Shopify:
+     ```bash
+     npm run deploy
+     ```
 
-```shell
-# Note that you can also use a different port
-cloudflared tunnel --url http://localhost:3000
-```
+## Explanation of `shopify.app.toml`
 
-Out of the logs produced by cloudflare you will notice a https URL where the domain ends with `trycloudflare.com`. This is your tunnel URL. You need to copy this URL as you will need it in the next step.
+The `shopify.app.toml` file is a configuration file for the Shopify CLI, defining key parameters and settings for your app. Here's an explanation of its contents:
 
-```shell
-2022-11-11T19:57:55Z INF Requesting new quick Tunnel on trycloudflare.com...
-2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
-2022-11-11T19:57:58Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
-2022-11-11T19:57:58Z INF |  https://randomly-generated-hostname.trycloudflare.com                                     |
-2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
-```
+- **`client_id`**
+  - The API key for your Shopify app. This is used to authenticate your app with Shopify.
 
-Below you would replace `randomly-generated-hostname` with what you have copied from the terminal. In a different terminal window, navigate to your app's root and with the URL from above you would call:
+- **`name`**
+  - The name of your Shopify app as it appears in the Shopify admin and app store.
 
-```shell
-# Using yarn
-yarn dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-# or using npm
-npm run dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-# or using pnpm
-pnpm dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-```
+- **`handle`**
+  - A unique identifier for your app. This is used internally by Shopify.
 
-## Developer resources
+- **`application_url`**
+  - The base URL where your app is hosted. Shopify redirects merchants to this URL for authentication and app interaction.
 
-- [Introduction to Shopify apps](https://shopify.dev/docs/apps/getting-started)
-- [App authentication](https://shopify.dev/docs/apps/auth)
-- [Shopify CLI](https://shopify.dev/docs/apps/tools/cli)
-- [Shopify API Library documentation](https://github.com/Shopify/shopify-api-js#readme)
-- [Getting started with internationalizing your app](https://shopify.dev/docs/apps/best-practices/internationalization/getting-started)
-  - [i18next](https://www.i18next.com/)
-    - [Configuration options](https://www.i18next.com/overview/configuration-options)
-  - [react-i18next](https://react.i18next.com/)
-    - [`useTranslation` hook](https://react.i18next.com/latest/usetranslation-hook)
-    - [`Trans` component usage with components array](https://react.i18next.com/latest/trans-component#alternative-usage-components-array)
-  - [i18n-ally VS Code extension](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
+- **`embedded`**
+  - Determines whether the app is embedded inside the Shopify admin (true) or runs externally (false).
+
+### `[build]`
+- **`automatically_update_urls_on_dev`**
+  - Automatically updates URLs to point to your development store during local development.
+- **`dev_store_url`**
+  - Specifies the development store to use during app testing.
+- **`include_config_on_deploy`**
+  - Ensures the configuration is included when deploying the app.
+
+### `[access_scopes]`
+- **`scopes`**
+  - Specifies the access scopes your app requires. For example, `read_products` allows the app to read product information from the store.
+
+### `[auth]`
+- **`redirect_urls`**
+  - A list of redirect URLs for OAuth authentication. Shopify redirects users to these URLs after they log in.
+
+### `[webhooks]`
+- **`api_version`**
+  - Specifies the Shopify API version used for webhooks.
+- **`[[webhooks.subscriptions]]`**
+  - Defines webhook subscriptions for your app. Each subscription includes:
+    - **`topics`**: The topics to subscribe to (e.g., `products/create`, `products/delete`, `products/update`).
+    - **`uri`**: The webhook destination. In this case, `pubsub://` specifies a Google Pub/Sub destination.
+
+### `[pos]`
+- **`embedded`**
+  - Determines whether the app is embedded inside Shopify POS (Point of Sale).
+
+## Project Structure
+
+- **Root Directory (`./ecommind-app-server`)**
+  - Contains the main server code (Node.js Express app).
+  - Handles Shopify API integrations and webhooks.
+
+- **Web Directory (`./ecommind-app-server/web`)**
+  - Express.js server to serve the admin panel UI and handle backend operations.
+
+- **Admin UI (`./ecommind-app-server/web/frontend`)**
+  - A React app for the admin panel where merchants can customize their chatbot.
+
+- **Chatbot UI Extension (`./ecommind-app-server/extensions/chat-bot-ui`)**
+  - A React app built using Vite for the chatbot interface embedded in the store.
+  - Outputs compiled assets (`chatbot.js`, `main.css`) into the `./extensions/chat-bot/assets/` folder.
+
+- **Static Assets (`./ecommind-app-server/extensions/chat-bot/assets`)**
+  - Contains the compiled JavaScript and CSS files for the chatbot UI extension.
+
+## Creating a New App Instance
+
+If you want to create a new app instance to generate a different installation link (or for separate Shopify App Store listings), follow these steps:
+
+1. **Clone the Repository**
+   Create a new copy of this repository:
+   ```bash
+   git clone <repository_url> new-app-instance
+   cd new-app-instance
+   ```
+
+2. **Update the `shopify.app.toml` File**
+   Update the following properties in the `shopify.app.toml` file to reflect the new app:
+   - **`client_id`**: Replace with the API key of the new app.
+   - **`name`**: Set a new name for the app.
+   - **`handle`**: Assign a unique handle for the app.
+   - **`application_url`**: Set the URL where the new app will be hosted.
+   - **`auth.redirect_urls`**: Update with the new callback URL (usually `<application_url>/api/auth/callback`).
+
+3. **Set Up Environment Variables**
+   Create a new `.env` file and update the values to match the new app:
+   ```env
+   SHOPIFY_API_KEY=<new_shopify_api_key>
+   SHOPIFY_API_SECRET=<new_shopify_api_secret>
+   SCOPES=read_products
+   SHOPIFY_CHAT_BOT_ID=<new_chatbot_id>
+   MONGO_URI=<your_mongo_connection_string>
+   ```
+
+   Ensure the same updates are made in the `./web/.env` file.
+
+4. **Update Hosting Settings**
+   If deploying the app server on Render or another hosting platform, set up a new service and configure it to use the updated repository and environment variables.
+
+5. **Rebuild and Deploy the App**
+   - Build the chatbot extension:
+     ```bash
+     cd extensions/chat-bot-ui
+     npm run build
+     ```
+   - Deploy the server and Shopify extension:
+     ```bash
+     npm run deploy
+     ```
+
+6. **Test the New App Instance**
+   Test the new app in a Shopify development store to ensure it works as expected and generates a new installation link.
+
+
+## Development Notes
+
+- **Theme Extension Integration**
+  The chatbot theme extension includes a Liquid template file (`chatbot-popup.liquid`) with the following structure:
+  ```liquid
+  <div id="chatbot-root"></div>
+  <script src="{{ 'chatbot.js' | asset_url }}"></script>
+  <link href="{{ 'main.css' | asset_url }}" rel="stylesheet">
+  <script>
+    console.log("Shopify Domain:", Shopify.shop);
+    window.shopDomain = Shopify.shop;
+    document.addEventListener('DOMContentLoaded', function () {
+      const root = document.getElementById('chatbot-root');
+      if (root) {
+        ReactDOM.createRoot(root).render(
+          React.createElement(Chatbot)
+        );
+      }
+    });
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Chatbot Popup",
+    "target": "body",
+    "settings": [
+      {
+        "type": "text",
+        "id": "chatbot_greeting",
+        "label": "Greeting Message",
+        "default": "Hi there! How can I help you?"
+      }
+    ]
+  }
+  {% endschema %}
+  ```
+
+- **Build Configuration**
+  The `vite.config.js` file in the chatbot UI ensures the build output is compatible with Shopify's assets folder structure. Example configuration:
+  ```javascript
+  import { defineConfig } from 'vite';
+  import react from '@vitejs/plugin-react';
+
+  export default defineConfig({
+    plugins: [react()],
+    build: {
+      outDir: '../extensions/chat-bot/assets',
+      rollupOptions: {
+        input: './src/main.tsx',
+        output: {
+          entryFileNames: 'chatbot.js',
+          assetFileNames: '[name].[ext]'
+        }
+      },
+      minify: 'terser',
+      terserOptions: {
+        mangle: {
+          toplevel: true
+        },
+        compress: {
+          drop_console: true
+        }
+      }
+    },
+    publicDir: false
+  });
+  ```
+
+## License
+
+[MIT License](./LICENSE)
+
+## Contact
+
+For support or inquiries, please contact [your_email@example.com].
