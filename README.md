@@ -30,10 +30,26 @@ Before setting up the project, ensure you have the following installed:
    ```
 
 2. **Install Dependencies**
-   Run `npm install` in the root directory:
-   ```bash
-   npm install
-   ```
+   Run `npm install` in the following directories:
+   - Root directory:
+     ```bash
+     npm install
+     ```
+   - Web server directory:
+     ```bash
+     cd web
+     npm install
+     ```
+   - Admin UI directory:
+     ```bash
+     cd frontend
+     npm install
+     ```
+   - Chatbot UI extension directory:
+     ```bash
+     cd ../../extensions/chat-bot-ui
+     npm install
+     ```
 
 3. **Configure Environment Variables**
    Create a `.env` file in the root directory (`./ecommind-app-server`) and configure the required environment variables. Example:
