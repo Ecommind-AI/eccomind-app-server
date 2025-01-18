@@ -3,12 +3,12 @@
 client_id = "3a7c9ef9793e7baf3033f119e6aca902"
 name = "Ecommind AI"
 handle = "ecommind-app"
-application_url = "https://sales-mate-app.onrender.com"
+application_url = "https://revision-ian-discusses-processor.trycloudflare.com"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "shoesstore123235.myshopify.com"
+dev_store_url = "demo-store-snowboards.myshopify.com"
 include_config_on_deploy = true
 
 [access_scopes]
@@ -16,7 +16,11 @@ include_config_on_deploy = true
 scopes = "read_products"
 
 [auth]
-redirect_urls = [ "https://sales-mate-app.onrender.com/api/auth/callback" ]
+redirect_urls = [
+  "https://revision-ian-discusses-processor.trycloudflare.com/auth/callback",
+  "https://revision-ian-discusses-processor.trycloudflare.com/auth/shopify/callback",
+  "https://revision-ian-discusses-processor.trycloudflare.com/api/auth/callback"
+]
 
 [webhooks]
 api_version = "2024-10"

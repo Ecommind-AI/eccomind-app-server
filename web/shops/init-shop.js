@@ -22,7 +22,13 @@ export async function initShop(shop, accessToken) {
                 domain: shop,
                 initial_message: "How can we help you today? 👋",
                 initial_suggestions: ["What are your best-selling products right now?"],
-                primary_color: "#2563EB"
+                FAQs: "Q: Who created the personal assistant? A: The Company Eccomind AI",
+                primary_color: "#2563EB",
+                secondary_color: "#000000",
+                test_mode: false,
+                shop_description: "",
+                delivery_description: "",
+                returns_policy: "",
             },
             { upsert: true, new: true }
         );
