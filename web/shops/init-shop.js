@@ -38,8 +38,8 @@ export async function initShop(shop, accessToken) {
         // Save products to MongoDB using bulk operations
         const bulkOps = products.map((product) => ({
             updateOne: {
-                filter: { id: product.id },
-                update: { ...product, shop_id: savedShop.id, shop_domain: savedShop.domain, created_at: new Date() },
+                filter: { id: extractNumberFromId(product.id) },
+                update: { ...product, id: extractNumberFromId(product.id), shop_id: savedShop.id, shop_domain: savedShop.domain, created_at: new Date() },
                 upsert: true, // Insert if it doesn't exist
             },
         }));
@@ -53,3 +53,17 @@ export async function initShop(shop, accessToken) {
         console.error("Error initializing shop data and products:", error.message);
     }
 }
+
+function extractNumberFromId(id) {
+    // Use a regular expression to match the number after the last /
+    const match = id.match(/\/(\d+)$/);
+  
+    // If a match is found, return the number
+    if (match) {
+      return match[1];
+    }
+  
+    // Otherwise, find and return all numbers in the string
+    const allNumbers = id.match(/\d+/g);
+    return allNumbers ? allNumbers.join('') : null;
+  }

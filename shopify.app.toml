@@ -3,7 +3,7 @@
 client_id = "3a7c9ef9793e7baf3033f119e6aca902"
 name = "Ecommind AI"
 handle = "ecommind-app"
-application_url = "https://revision-ian-discusses-processor.trycloudflare.com"
+application_url = "https://allow-prophet-dude-webcams.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_products"
 
 [auth]
 redirect_urls = [
-  "https://revision-ian-discusses-processor.trycloudflare.com/auth/callback",
-  "https://revision-ian-discusses-processor.trycloudflare.com/auth/shopify/callback",
-  "https://revision-ian-discusses-processor.trycloudflare.com/api/auth/callback"
+  "https://allow-prophet-dude-webcams.trycloudflare.com/auth/callback",
+  "https://allow-prophet-dude-webcams.trycloudflare.com/auth/shopify/callback",
+  "https://allow-prophet-dude-webcams.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
