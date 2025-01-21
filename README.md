@@ -77,7 +77,11 @@ Before setting up the project, ensure you have the following installed:
    - Registering webhooks via Google Pub/Sub to track product updates.
    - Providing a REST API to the admin frontend and chatbot theme extension for retrieving and updating shop-specific configurations.
 
-5. **Build the Chatbot Extension**
+5. **Run the Chatbot Extension**
+  Navigate to the `chat-bot-ui` directory and run ```npm run dev```
+  This will run the chatbot extension locally for development purpose.
+
+6. **Build the Chatbot Extension**
    Navigate to the `chat-bot-ui` directory and build the extension:
    ```bash
    cd extensions/chat-bot-ui
@@ -85,7 +89,7 @@ Before setting up the project, ensure you have the following installed:
    ```
    This will generate the static assets in the `./extensions/chat-bot/assets/` folder.
 
-6. **Deploying the App**
+7. **Deploying the App**
    - **Deploy the Server on Render:**
      To deploy a new version of the app server, push your code to the `main` branch and then go to Render to deploy the latest commit.
    - **Deploy the Shopify Extension:**
