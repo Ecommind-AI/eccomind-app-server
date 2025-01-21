@@ -84,7 +84,7 @@ Before setting up the project, ensure you have the following installed:
 6. **Build the Chatbot Extension**
    Navigate to the `chat-bot-ui` directory and build the extension:
    ```bash
-   cd extensions/chat-bot-ui
+   cd extensions/chat-bot
    npm run build
    ```
    This will generate the static assets in the `./extensions/chat-bot/assets/` folder.
