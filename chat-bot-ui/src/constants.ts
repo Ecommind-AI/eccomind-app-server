@@ -19,7 +19,7 @@ export const defaultInitialMessages: Message[] = [
   // },
 ];
 export const ECOMMIND_SERVER_URL =
-  "https://sales-mate-app.onrender.com";
+  "https://eccomind-app-server.onrender.com";
 
 export const SHOP_DOMAIN =
   window.shopDomain || "shoesstore123235.myshopify.com";
