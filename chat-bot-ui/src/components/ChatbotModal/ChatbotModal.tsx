@@ -73,6 +73,18 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
   };
 
   useEffect(() => {
+    if (isVisible) {
+      const messagesContainer = document.getElementById("messages-container");
+      if (!messagesContainer) return;
+
+      messagesContainer.scroll({
+        top: messagesContainer.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [isVisible]);
+
+  useEffect(() => {
     setConversationId(initConversationId());
 
     const conversation = getSessionConversation();
