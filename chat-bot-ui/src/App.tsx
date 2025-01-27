@@ -41,16 +41,16 @@ const App = () => {
             setModalVisible(!modalVisible);
           }}
         />
-        {modalVisible && (
-          <ChatbotModal
-            primaryColor={shopData.primary_color || "#FFFFFF"}
-            initialMessages={initialMessages}
-            modalRef={modalRef}
-            onClose={() => {
-              setModalVisible(false);
-            }}
-          />
-        )}
+        <ChatbotModal
+          primaryColor={shopData.primary_color || "#FFFFFF"}
+          initialMessages={initialMessages}
+          modalRef={modalRef}
+          onClose={() => {
+            setModalVisible(false);
+          }}
+          style={{ opacity: modalVisible ? 1 : 0 }}
+          isVisible={modalVisible}
+        />
       </div>
     )
   );

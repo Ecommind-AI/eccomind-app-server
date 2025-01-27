@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 /* Global Styles */
 body {
@@ -11,6 +11,11 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.chatbot-modal {
+  transition: opacity 0.3s ease;
+  /* Other existing styles */
 }
 
 /* Add any additional global styles here */
