@@ -16,6 +16,8 @@ interface ChatbotModalProps {
   modalRef: React.RefObject<HTMLDivElement>;
   initialMessages: Message[];
   primaryColor: string;
+  style: React.CSSProperties;
+  isVisible: boolean;
 }
 
 const ChatbotModal: React.FC<ChatbotModalProps> = ({
@@ -23,11 +25,12 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
   modalRef,
   initialMessages,
   primaryColor,
+  style,
+  isVisible,
 }) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [conversationId, setConversationId] = useState<number>(0);
 
   const timelyDisplayAssistantMessages = async ({
@@ -89,9 +92,10 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
 
     const conversation = getSessionConversation();
     setMessages([...messages, ...conversation]);
-    setIsVisible(true);
 
-    return () => setIsVisible(false);
+    return () => {
+      // Cleanup function
+    };
   }, []);
 
   const handleSendMessage = async (text: string) => {
@@ -173,7 +177,14 @@ const ChatbotModal: React.FC<ChatbotModalProps> = ({
   };
 
   return (
-    <div ref={modalRef} className={`chatbot-modal ${isVisible ? "show" : ""}`}>
+    <div
+      ref={modalRef}
+      style={{
+        pointerEvents: isVisible ? "auto" : "none",
+        ...style,
+      }}
+      className={`chatbot-modal ${isVisible ? "show" : ""}`}
+    >
       <ChatbotHeader
         logoColor={primaryColor}
         initialMessages={initialMessages}
